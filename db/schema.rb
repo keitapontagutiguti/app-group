@@ -29,6 +29,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ActiveRecord::Schema.define(version: 20161020110004) do
 
   create_table "users", force: :cascade do |t|

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020064727) do
+ActiveRecord::Schema.define(version: 20161020103841) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "joins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.integer  "event_id"
@@ -23,6 +36,7 @@ ActiveRecord::Schema.define(version: 20161020064727) do
     t.string   "area"
     t.integer  "day"
     t.integer  "capacity"
+>>>>>>> 0f1d60d8e5349efe336064560f6811ce4ac6021f
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

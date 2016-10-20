@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20161020103841) do
   create_table "joins", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.string   "image"
+    t.string   "tag"
+    t.string   "area"
+    t.integer  "day"
+    t.integer  "capacity"
+>>>>>>> 0f1d60d8e5349efe336064560f6811ce4ac6021f
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

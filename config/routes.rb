@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get "/posts"=> "posts#index",as:"yasui"
+=======
+  devise_for :users
+>>>>>>> bd918a28eba8bb0294194250aa31a6d2a12ef315
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

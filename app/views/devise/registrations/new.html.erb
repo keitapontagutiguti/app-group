@@ -4,8 +4,18 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :name %>　　　　　　　　　　　　　　　
+    <%= f.label :name %>
     <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <label><%= f.radio_button :gender, "1" %>男</label>
+    <label><%= f.radio_button :gender, "2" %>女</label>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, class:"content" %>
+    <%= f.file_field :image, class:"content" %>
   </div>
 
   <div class="field">
@@ -26,8 +36,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <%= f.label :image, class:"content" %>
-  <%= f.file_field :image, class:"content" %>
+  
 
   <div class="actions">
     <%= f.submit "Sign up" %>

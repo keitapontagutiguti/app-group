@@ -9,13 +9,18 @@
   </div>
 
   <div class="field">
-    <label><%= f.radio_button :gender, "1" %>男</label>
-    <label><%= f.radio_button :gender, "2" %>女</label>
+    <label><%= f.radio_button :gender, "1" %>MEN</label>
+    <label><%= f.radio_button :gender, "2" %>WOMEN</label>
   </div>
 
   <div class="field">
-    <%= f.label :image, class:"content" %>
+    <%= f.label :profile_image, class:"content" %><br>
     <%= f.file_field :image, class:"content" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %><br>
+    <%= f.text_area :inform, :size=>"80x10" %>
   </div>
 
   <div class="field">

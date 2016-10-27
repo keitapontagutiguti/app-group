@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end 
 
   get "/comment" => "comments#new"
+    resources :users, only: [:edit, :update, :show] do
+    end
+
+  root 'base#top'
 
  
 

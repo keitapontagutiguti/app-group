@@ -1,33 +1,8 @@
-<div class="center-block base-width">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="base-width">
+<h2>Edit your account</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class:'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <label><%= f.radio_button :gender, "1" %>MEN</label>
-    <label><%= f.radio_button :gender, "2" %>WOMEN</label>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :nationality %>
-    <%= f.text_field :nationality, class:'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :profile_image, class:"content" %>
-    <%= f.file_field :image, class:"content" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :introduction %><br>
-    <%= f.text_area :inform, class:'form-control' %>
-  </div>
 
   <div class="form-group">
     <%= f.label :email %><br />

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161020130010) do
+=======
+ActiveRecord::Schema.define(version: 20161021153542) do
+>>>>>>> 6f4bda57ac92da56ef7bfec131bdf484315c722c
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -71,6 +75,12 @@ ActiveRecord::Schema.define(version: 20161020130010) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "image"
+<<<<<<< HEAD
+=======
+    t.integer  "gender"
+    t.text     "inform"
+    t.string   "nationality"
+>>>>>>> 6f4bda57ac92da56ef7bfec131bdf484315c722c
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

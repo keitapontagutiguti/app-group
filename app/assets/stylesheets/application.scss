@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+$fontS:15px;
+$fontM:20px;
+$fontL:30px;
+$fontLL:40px;
+
+@mixin BaseSentence{
+ 	margin: 10px 0;
+}
+
+.base-width{
+ 	width: 80%;
+ 	margin:0 auto;
+}
+.user-info-head{
+	@include BaseSentence;
+    font-size: $fontS;
+}
+.user-info-date-M{
+    @include BaseSentence;
+    font-size: $fontM;
+}
+.user-info-date-L{
+	@include BaseSentence;
+    font-size: $fontL;
+}
+.user-info-date-LL{
+	@include BaseSentence;
+    font-size: $fontLL;
+}
+
+
+.header-height{
+	height: 50px;
+	line-height: 50px;
+	padding:0 5px;
+}
+.image-box{
+	padding:20px 0;
+}

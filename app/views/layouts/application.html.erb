@@ -8,6 +8,38 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample7">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand h-title" href="#">
+				Whatever If You Want !!
+			</a>
+		</div>
+		
+		<div class="collapse navbar-collapse" id="navbarEexample7">
+			<ul class="nav navbar-nav">
+				
+				<% if user_signed_in? %>
+ 
+			        <li><%= link_to 'MY PAGE', user_path(current_user) %></li>
+			        <li class="header-height">Logged in as <%= current_user.name %></li>
+			        <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+                  <li class="signin"><%= link_to "SIGN IN", new_user_registration_path %></li>
+                  <li class="login"><%= link_to "LOGIN", new_user_session_path %></li>
+          <% end %>
+			</ul>
+		</div>
+
+	</div>
+</nav>
+
 <%= yield %>
 
 </body>

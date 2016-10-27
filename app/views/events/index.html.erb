@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <th>image</th>
+    <th>title</th>
+    <th>text</th>
+  </thead>
+
+  <tbody>
+
+  <%= @events.each do |event| %>
+
+  <tr>
+
+    <% if event.image? %>
+    　 <td><%= image_tag event.image.url %></td>
+    <% else %>
+      <td><%= image_tag 'noimage.gif' %></td>
+    <% end %>
+
+    <td><%= link_to event.title, event_path(event) %></td>
+    <td><%= event.body %></td>
+  </tr>
+
+  <% end %>
+
+  </tbody>
+</table>

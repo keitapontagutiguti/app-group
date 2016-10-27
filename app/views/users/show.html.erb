@@ -1,0 +1,47 @@
+<div class="col-md-1"></div>
+
+<div class="col-md-5">
+<h1 class="font-size-LL">MY PAGE</h1> 
+  <section>
+    <span class="label">IMAGE</span>
+    <% if @user.image? %>
+      <%= image_tag @user.image.url %>
+    <% else %>
+      <%= image_tag "noimage.gif" %>
+    <% end %>
+  </section>
+
+  <section class="base-sentence">
+    <span class="label label-danger font-size-S">NAME</span>
+    <h3 class="base-sentence font-size-L"><%= @user.name %></h3>
+  </section>
+  <section class="base-sentence">
+    <span class="label label-info font-size-S">GENDER</span>
+    <% if @user.gender == 1 %>   
+      <h3 class="base-sentence font-size-M">MEN</h3>
+    <% else %>
+      <h3 class="base-sentence font-size-M">WOMEN</h3>
+    <% end %>
+  </section>
+
+  <section class="base-sentence">
+    <span class="label label-warning font-size-S">NATIONALITY</span>
+    <h3 class="base-sentence font-size-L"><%= @user.nationality %></h3>
+  </section>
+  
+  <section class="base-sentence">
+    <span class="label label-success font-size-S">INTRODUCTION</span>
+    <h3 class="base-sentence font-size-M"><%= @user.inform %></h3>
+  </section>
+
+  <% if current_user == @user %>
+    <section class="base-sentence font-size-S">
+      <p><%= link_to 'LOGIN EDIT', edit_user_registration_path %></p>
+      <p><%= link_to 'PROFILE EDIT', edit_user_path %></p>
+    </section>
+  <% end %>
+</div>
+
+<div class="col-md-5"></div>
+
+<div class="col-md-1"></div>

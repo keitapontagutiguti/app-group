@@ -1,0 +1,40 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<% if @event.image? %>
+  <p><%= image_tag @event.image.url %></p>
+<% else %>
+  <p><%= image_tag 'noimage.gif' %></p>
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @event.body %>
+</p>
+
+<p>
+	<strong>Place:</strong>
+	<%= @event.area %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.day %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @event.capacity %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= render 'tag_list', tag_list: @event.tag_list %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event), class: :btn %>
+<%= link_to 'Back', events_path, class: :btn %>

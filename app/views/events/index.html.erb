@@ -1,8 +1,10 @@
+
 <table>
   <thead>
     <th>image</th>
     <th>title</th>
     <th>text</th>
+    <th>tag</th>
   </thead>
 
   <tbody>
@@ -19,6 +21,7 @@
 
     <td><%= link_to event.title, event_path(event) %></td>
     <td><%= event.body %></td>
+    <td><%= render 'tag_list', tag_list: event.tag_list %></td>
   </tr>
 
   <% end %>

@@ -1,8 +1,8 @@
 <div class="col-md-1"></div>
 
 <div class="col-md-5">
-<h1 class="font-size-LL">MY PAGE</h1> 
-  <section>
+<h1 class="user-info-date-LL">MY PAGE</h1> 
+  <section class="image-box">
     <span class="label">IMAGE</span>
     <% if @user.image? %>
       <%= image_tag @user.image.url %>
@@ -12,30 +12,30 @@
   </section>
 
   <section class="base-sentence">
-    <span class="label label-danger font-size-S">NAME</span>
-    <h3 class="base-sentence font-size-L"><%= @user.name %></h3>
+    <span class="label label-danger user-info-head">NAME</span>
+    <h3 class="user-info-date-L"><%= @user.name %></h3>
   </section>
   <section class="base-sentence">
-    <span class="label label-info font-size-S">GENDER</span>
+    <span class="label label-info user-info-head">GENDER</span>
     <% if @user.gender == 1 %>   
-      <h3 class="base-sentence font-size-M">MEN</h3>
+      <h3 class="user-info-date-M">MEN</h3>
     <% else %>
-      <h3 class="base-sentence font-size-M">WOMEN</h3>
+      <h3 class="user-info-date-M">WOMEN</h3>
     <% end %>
   </section>
 
   <section class="base-sentence">
-    <span class="label label-warning font-size-S">NATIONALITY</span>
-    <h3 class="base-sentence font-size-L"><%= @user.nationality %></h3>
+    <span class="label label-warning user-info-head">NATIONALITY</span>
+    <h3 class="user-info-date-L"><%= @user.nationality %></h3>
   </section>
   
   <section class="base-sentence">
-    <span class="label label-success font-size-S">INTRODUCTION</span>
-    <h3 class="base-sentence font-size-M"><%= @user.inform %></h3>
+    <span class="label label-success user-info-head">INTRODUCTION</span>
+    <h3 class="user-info-date-M"><%= @user.inform %></h3>
   </section>
 
   <% if current_user == @user %>
-    <section class="base-sentence font-size-S">
+    <section class="user-info-head">
       <p><%= link_to 'LOGIN EDIT', edit_user_registration_path %></p>
       <p><%= link_to 'PROFILE EDIT', edit_user_path %></p>
     </section>

@@ -13,10 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+@import 'bootstrap-datetimepicker';
+
 $fontS:15px;
 $fontM:20px;
 $fontL:30px;
 $fontLL:40px;
+
 
 @mixin BaseSentence{
  	margin: 10px 0;
@@ -46,8 +50,6 @@ $fontLL:40px;
 	@include BaseSentence;
     font-size: $fontLL;
 }
-
-
 .header-height{
 	height: 50px;
 	line-height: 50px;

@@ -1,16 +1,15 @@
-<div class="center-block base-width">
+
 
 <%= form_for(@event) do |f| %>
 
 	<% if @event.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
       <ul>
       	<% @event.errors.full_messages.each do |message| %>
         	<li><%= message %></li>
       	<% end %>
-      </ul>
+     	</ul>
 		</div>
 	<% end %>
 
@@ -37,10 +36,10 @@
 	<div class="form-group">
 		<%= f.label :day %><br>
 		<div class='input-group date datetimepicker'>
-  		<%= f.text_field :day, class: 'form-control' %>
-  		<span class="input-group-addon">
+			<span class="input-group-addon">
   			<span class="fa fa-calendar"></span>
   		</span>
+  		<%= f.text_field :day, class: 'form-control' %>
   	</div>
   </div>
 
@@ -48,6 +47,7 @@
 	<div class="form-group">
 		<%= f.label :capacity %><br>
 		<%= f.number_field :capacity, class:'form-control' %>
+		<span id="helpBlock" class="help-block">Include yourself. At least <strong>2</strong> people.</span>
 	</div>
 
 	<div class="form-group">
@@ -61,8 +61,6 @@
 	</div>
 
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit class: "btn btn-primary" %>
 	</div>
 <% end %>
-
-</div>

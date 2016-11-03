@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 	end
 
 	def show
-		
+		@comment = Comment.new
 	end
 
 	def new
@@ -27,11 +27,13 @@ class EventsController < ApplicationController
   end
 
 	def update
-		
+		@event.update(event_params)
+		redirect_to event_path(@event)
 	end
 
 	def destroy
-		
+		@event.destroy
+		redirect_to events_path
 	end
 
 	private
@@ -40,7 +42,7 @@ class EventsController < ApplicationController
 			@event = Event.find(params[:id])
 		end
 		def event_params
-			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity)
+			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list)
 		end
 
 end

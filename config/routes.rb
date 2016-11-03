@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+
   resources :posts do
     resource :replies, :only => [:create, :destroy]
   end
@@ -8,6 +9,17 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :show] do
   end
   resources :events
+
+  resources :events do
+    resources :comments
+  end
+
+  get "/comment" => "comments#new"
+    resources :users, only: [:edit, :update, :show] do
+    end
+
+  root 'base#top'
+
 
 
 

@@ -1,8 +1,14 @@
+<div class="center-block base-width">
+
 <table>
   <thead>
-    <th>image</th>
-    <th>title</th>
-    <th>text</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Date</th>
+    <th>Place</th>
+    <th>Tag</th>
+    <th>Comment</th>>
   </thead>
 
   <tbody>
@@ -12,16 +18,22 @@
   <tr>
 
     <% if event.image? %>
-    　 <td><%= image_tag event.image.url %></td>
+    　 <td><%= image_tag event.image.url, class: "img-responsive img-rounded" %></td>
     <% else %>
-      <td><%= image_tag 'noimage.gif' %></td>
+      <td><%= image_tag 'noimage.gif', class: "img-responsive img-rounded" %></td>
     <% end %>
 
     <td><%= link_to event.title, event_path(event) %></td>
     <td><%= event.body %></td>
+    <td><%= event.day %></td>
+    <td><%= event.area %></td>
+    <td><%= render 'tag_list', tag_list: event.tag_list %></td>
+    <td>コメント（<%= event.comments.count %>）</td>
   </tr>
 
   <% end %>
 
   </tbody>
 </table>
+
+</div>

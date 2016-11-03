@@ -1,19 +1,30 @@
 Rails.application.routes.draw do
-  get "/posts"=> "posts#index",as:"yasui"
-  get"/replies"=>"replies#index",as:"replies"
   devise_for :users
+
+
+  resources :posts do
+    resource :replies, :only => [:create, :destroy]
+  end
+
+  resources :users, only: [:edit, :update, :show] do
+  end
+
   resources :events do
     resources :comments
   end 
   
-  get 'events/search' => "events#search"
 
   get "/comment" => "comments#new"
     resources :users, only: [:edit, :update, :show] do
     end
 
   root 'base#top'
-  
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

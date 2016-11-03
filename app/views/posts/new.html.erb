@@ -1,0 +1,8 @@
+<h1>新規投稿</h1>
+<%= form_tag posts_path do %>
+タイトル
+	<input type="string" name="post[title]">
+本文
+<input type="text" name="post[body]">
+<input type="submit" value="投稿する">
+  <% end %>

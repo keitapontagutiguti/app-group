@@ -1,1 +1,6 @@
-こんにちは。安井です。
+<h1>最近のできごと！</h1>
+ <h2>投稿一覧</h2>
+<% @posts.each do |post| %>
+  <p>タイトル</p>
+  <span><%=link_to post.title, post_path(post) %></span>
+<% end %>

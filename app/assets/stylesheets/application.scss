@@ -13,15 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+@import 'bootstrap-datetimepicker';
+
 $fontS:15px;
 $fontM:20px;
 $fontL:30px;
 $fontLL:40px;
 
+
 @mixin BaseSentence{
  	margin: 10px 0;
 }
 
+*{
+	padding: 0;
+	margin: 0;
+}
 .base-width{
  	width: 80%;
  	margin:0 auto;
@@ -42,8 +50,6 @@ $fontLL:40px;
 	@include BaseSentence;
     font-size: $fontLL;
 }
-
-
 .header-height{
 	height: 50px;
 	line-height: 50px;
@@ -51,4 +57,21 @@ $fontLL:40px;
 }
 .image-box{
 	padding:20px 0;
+}
+.navbar-config{
+	margin-bottom: 0;
+	border-radius: 0;
+}
+.main-visualbox{
+    width: 100%;
+    height: 750px;
+    position: relative;
+}
+.main-visual{
+    width: 100%; 
+    height: 750px;
+}
+.image-edit{
+	width:100%;
+	height:750px;
 }

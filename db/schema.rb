@@ -11,11 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161020130010) do
-=======
-ActiveRecord::Schema.define(version: 20161021153542) do
->>>>>>> 6f4bda57ac92da56ef7bfec131bdf484315c722c
+
+
+ActiveRecord::Schema.define(version: 20161030053219) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,7 +31,7 @@ ActiveRecord::Schema.define(version: 20161021153542) do
     t.string   "image"
     t.string   "tag"
     t.string   "area"
-    t.integer  "day"
+    t.string   "day"
     t.integer  "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,6 +60,31 @@ ActiveRecord::Schema.define(version: 20161021153542) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -75,13 +98,12 @@ ActiveRecord::Schema.define(version: 20161021153542) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "image"
-<<<<<<< HEAD
-=======
+
+
     t.integer  "gender"
     t.text     "inform"
     t.string   "nationality"
->>>>>>> 6f4bda57ac92da56ef7bfec131bdf484315c722c
-  end
+
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

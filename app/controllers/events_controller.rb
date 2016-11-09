@@ -6,6 +6,8 @@ class EventsController < ApplicationController
 
 	def index
 		@events = Event.all
+		@search = Event.search(params[:q])
+		@events = @search.result(district: true)
 	end
 
 	def show
@@ -22,20 +24,30 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
-    @event.save
-    redirect_to events_path
+    if @event.save
+    	redirect_to events_path
+    	flash[:notice] = "The Event was successfly posted!!"
+    else
+    	Event.new(event_params)
+    	render 'new'
+    end
   end
 
 	def update
-		@event.update(event_params)
-		redirect_to event_path(@event)
+		if @event.update(event_params)
+			redirect_to event_path(@event)
+    	flash[:notice] = "This Event was updated."
+    else
+    	redirect_to event_path(@event)
+    	flash[:notice] = "Update was failed."
+    end
 	end
 
 	def destroy
 		@event.destroy
 		redirect_to events_path
 	end
-
+	
 	private
 
 		def set_event

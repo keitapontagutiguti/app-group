@@ -2,19 +2,43 @@
 
 
 <div class="main-visualbox" id="container">
-    <div id="theTarget">
-        <div class="main-visual"><%= image_tag 'top1.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top2.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top3.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top4.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top5.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top6.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top7.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top8.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top9.jpg', class: 'image-edit' %></div>
-        <div class="main-visual"><%= image_tag 'top10.jpg', class: 'image-edit' %></div>
+    <div id="theTarget"> 
+        <% 8.times do |i| %>
+        <div class="main-visual"><%= image_tag "top#{i+1}.jpg", class: 'image-edit' %></div>
+        <% end %> 
     </div>
 </div>
+<div class="app-explain">
+	<p class="exp-japanese">あなたのやりたいことがすぐできる</p>
+	<p class="exp-japanese">イベントの企画から参加まで、さまざまなジャンルで交流ができる</p>
+	<p class="exp-japanese">新しい出会いで人生をもっと楽しみませんか？</p>
+	<p class="exp-english">It is possible to want to do something immediately. You can make an event, and the participation is possible, too</p>
+	<button type="button" class="btn btn-secondary center-block"><%= link_to "Regstration", new_user_registration_path %>
+	</button>
+</div>
+
+<div class="event-make-reserch">
+    <h2 class="col-md-12 text-center">MAIN SERVICE</h2>
+    <div class="col-md-1"></div>
+    <div class="col-md-5 make">
+        <h3><i class="fa fa-plus fa-2x" aria-hidden="true"></i>Make an event</h3> 
+        <p>あなたの趣味や好きなことをみんなで楽しもう</p>
+        <div class="go-to-new-event"><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= link_to 'Make an event', new_event_path %></div>
+    </div>
+    <div class="col-md-5 reserch">
+    	<h3><i class="fa fa-search-plus fa-2x" aria-hidden="true"></i>Search an event</h3>
+    	<p>既に作成されたあなたに合うイベントを探す</p>
+    </div>
+    <div class="col-md-1"></div>	
+</div>
+<div class="BBS-box">
+	<h2>Bulletin board system</h2>
+
+</div>
+
+<footer>
+	<p>Whatever If You Want !!</p>
+</footer>
 
 
 

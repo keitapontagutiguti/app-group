@@ -1,31 +1,13 @@
 <div class="center-block base-width">
 
-<%= search_form_for @search do |f| %>
-  <div class="field">
-    <%= f.label :title_cont, 'search from title:' %>
-    <%= f.search_field :title_cont %>
-  </div>
-  <div class="form-group">
-    <%= f.label :day_cont, 'search from date' %><br>
-    <div class='input-group date datepicker'>
-      <span class="input-group-addon">
-        <span class="fa fa-calendar"></span>
-      </span>
-    <%= f.search_field :day_cont, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<table>
+<table class="table table-hover table-condensed index-table">
   <thead>
     <th>Image</th>
     <th>Title</th>
     <th>Text</th>
     <th>Date</th>
     <th>Place</th>
+    <th>Capacity</th>
     <th>Tag</th>
     <th>Comment</th>
   </thead>
@@ -34,8 +16,9 @@
 
   <% @events.each do |event| %>
 
+  
   <tr>
-
+  <%= link_to event_path(event) do %>
     <% if event.image? %>
     　 <td><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %></td>
     <% else %>
@@ -46,13 +29,18 @@
     <td><%= event.body %></td>
     <td><%= event.day %></td>
     <td><%= event.area %></td>
+    <td><%= event.capacity %></td>
     <td><%= render 'tag_list', tag_list: event.tag_list %></td>
     <td>Comment(<strong><%= event.comments.count %></strong>)</td>
+  <% end %>
   </tr>
+  
 
   <% end %>
 
   </tbody>
 </table>
+
+<%= link_to "Index",events_path %>
 
 </div>

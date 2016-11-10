@@ -25,12 +25,12 @@
 
 	<div class="form-group">
 		<%= f.label :image %><br>
-		<%= f.file_field :image, class:'content' %>
+		<%= f.file_field :image, class:'content btn btn-primary' %>
 	</div>
 
 	<div class="form-group">
 		<%= f.label :area %><br>
-		<%= f.text_field :area, class:'form-control' %>
+		<%= f.text_field :area, class: 'form-control' %>
 	</div>
 
 	<div class="form-group">
@@ -55,10 +55,10 @@
 		<%= f.text_field_tag "event[tag_list]", @event.tag_list.join(','), class:'form-control' %>
 	</div>
 
-	<div class="form-group">
+<!-- 	<div class="form-group">
 	  ユーザーID
 	  ここに"current_user.id"が入ります。
-	</div>
+	</div> -->
 
 	<div class="actions">
 		<%= f.submit class: "btn btn-primary" %>

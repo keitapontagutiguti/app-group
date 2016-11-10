@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   root 'base#top'
 
-
+  get 'events/tag_search'
 
 
 

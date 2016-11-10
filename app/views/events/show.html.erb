@@ -3,13 +3,22 @@
 
 <p id="notice"><%= notice %></p>
 
-
+<div class="col-md-3">
 <% if @event.image? %>
   <p><%= image_tag @event.image.url %></p>
 <% else %>
   <p><%= image_tag 'noimage.gif' %></p>
 <% end %>
 
+<p>
+  <!-- <strong>Tag:</strong> -->
+  <%= render 'tag_list', tag_list: @event.tag_list %>
+</p>
+</div>
+
+<div class="col-md-1"></div>
+
+<div class="col-md-8">
 <p>
   <strong>Title:</strong>
   <%= @event.title %>
@@ -35,11 +44,11 @@
   <%= @event.capacity %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Tag:</strong>
   <%= render 'tag_list', tag_list: @event.tag_list %>
 </p>
-
+ -->
 <% @event.comments.each do |comment| %>
 
     <pre><%= comment.body %></pre>
@@ -51,7 +60,11 @@
     <%= f.submit 'コメントを投稿する' %>
   <% end %>
  
-<p><%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %></p>
+<p>
+  <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
+  <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, confirm: 'Are you sure?' %>
+</p>
 <p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
+</div>
 
 <div class="center-block base-width">

@@ -32,13 +32,16 @@ gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
+gem 'ransack'
 
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
-gem 'acts-as-taggable-on', '~> 3.4'
+gem 'acts-as-taggable-on'
 
 gem 'bootstrap-sass'
+
+gem 'font-awesome-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

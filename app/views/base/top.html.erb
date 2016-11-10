@@ -17,7 +17,7 @@
 	</button>
 </div>
 
-<div class="event-make-reserch">
+<div class="event-make-research">
     <h2 class="col-md-12 text-center">MAIN SERVICE</h2>
     <div class="col-md-1"></div>
     <div class="col-md-5 make">
@@ -25,15 +25,21 @@
         <p>あなたの趣味や好きなことをみんなで楽しもう</p>
         <div class="go-to-new-event"><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= link_to 'Make an event', new_event_path %></div>
     </div>
-    <div class="col-md-5 reserch">
+    <div class="col-md-5 research">
     	<h3><i class="fa fa-search-plus fa-2x" aria-hidden="true"></i>Search an event</h3>
     	<p>既に作成されたあなたに合うイベントを探す</p>
+    	<div class="go-to-research-event"><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= link_to 'Research an event', events_path %></div>
     </div>
     <div class="col-md-1"></div>	
 </div>
 <div class="BBS-box">
 	<h2>Bulletin board system</h2>
-
+	<ul>Recently</ul>
+	<div class="BBS-title-box">
+		<% @show.each do |t| %>
+		    <li>★<%=link_to t.title, '/posts' %></li>
+	    <% end %>
+    </div>
 </div>
 
 <footer>

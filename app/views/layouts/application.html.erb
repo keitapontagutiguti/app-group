@@ -30,6 +30,13 @@
 			        <li class="header-height"><%= link_to 'MY PAGE', user_path(current_user) %></li>
 			        <li class="header-height">Logged in as <%= current_user.name %></li>
 			        <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
+			        
+
+          <% else %>
+                  <li class="signin"><%= link_to "SIGN IN", new_user_registration_path %></li>
+                  <li class="login"><%= link_to "LOGIN", new_user_session_path %></li>
+          <% end %>
+
                 <% else %>
                   <li class="signin"><%= link_to "Regstration", new_user_registration_path %></li>
                   <li class="login"><%= link_to "Login", new_user_session_path %></li>

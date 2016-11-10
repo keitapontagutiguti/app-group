@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
 
 	def top
-		@show = Post.order("RANDOM()").last(10)
+		@random_posts = Post.order("RANDOM()").last(10)
 	end
 
 end

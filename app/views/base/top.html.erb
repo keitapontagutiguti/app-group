@@ -13,7 +13,7 @@
 	<p class="exp-japanese">イベントの企画から参加まで、さまざまなジャンルで交流ができる</p>
 	<p class="exp-japanese">新しい出会いで人生をもっと楽しみませんか？</p>
 	<p class="exp-english">It is possible to want to do something immediately. You can make an event, and the participation is possible, too</p>
-	<button type="button" class="btn btn-secondary center-block"><%= link_to "Regstration", new_user_registration_path %>
+	<button type="button" class="btn btn-success center-block"><%= link_to "Let's try", new_user_registration_path %>
 	</button>
 </div>
 
@@ -36,8 +36,8 @@
 	<h2>Bulletin board system</h2>
 	<ul>Recently</ul>
 	<div class="BBS-title-box">
-		<% @show.each do |t| %>
-		    <li>★<%=link_to t.title, '/posts' %></li>
+		<% @random_posts.each do |t| %>
+		    <li>★<%=link_to t.title, "/posts/#{t.id}" %></li>
 	    <% end %>
     </div>
 </div>

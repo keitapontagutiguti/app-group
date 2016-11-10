@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :posts do
-    resource :replies, :only => [:create, :destroy]
+    resources :replies, :only => [:create, :destroy]
   end
 
   resources :users, only: [:edit, :update, :show] do

@@ -7,8 +7,8 @@
 			<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
       <ul>
       	<% @event.errors.full_messages.each do |message| %>
-        	<li><%= message %></li>
-      	<% end %>
+        <li><%= message %></li>
+        <% end %>
      	</ul>
 		</div>
 	<% end %>
@@ -25,7 +25,7 @@
 
 	<div class="form-group">
 		<%= f.label :image %><br>
-		<%= f.file_field :image, class:'content btn btn-primary' %>
+		<%= f.file_field :image, class:'file', "data-show-upload" => false  %>
 	</div>
 
 	<div class="form-group">
@@ -54,11 +54,6 @@
 		<%= f.label :tag_list, "tag(separated by commas)" %><br>
 		<%= f.text_field_tag "event[tag_list]", @event.tag_list.join(','), class:'form-control' %>
 	</div>
-
-<!-- 	<div class="form-group">
-	  ユーザーID
-	  ここに"current_user.id"が入ります。
-	</div> -->
 
 	<div class="actions">
 		<%= f.submit class: "btn btn-primary" %>

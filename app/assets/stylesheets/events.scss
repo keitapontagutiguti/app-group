@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'application.scss';
+
+.event-box{
+	@include BaseWidth;
+}
+
 .index-table{
 	line-height: 100px;
 }

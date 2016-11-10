@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
 	def index
 		@events = Event.all
 		@search = Event.search(params[:q])
@@ -47,7 +48,13 @@ class EventsController < ApplicationController
 		@event.destroy
 		redirect_to events_path
 	end
-	
+
+	def tag_search
+
+		render action: 'index'
+		redirect_to events_path
+	end
+
 	private
 
 		def set_event

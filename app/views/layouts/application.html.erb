@@ -34,8 +34,8 @@
                     <li class="signin"><%= link_to "Regstration", new_user_registration_path %></li>
                   <li class="login"><%= link_to "Login", new_user_session_path %></li>
                 <% end %>
-                <li><%= link_to 'Make an event', new_event_path %></li>
                 <li><%= link_to 'Event list', events_path %></li>
+                <li class="dropdown header-height"><%= render template: 'events/_search_dropdown' %></li>
                 <li><%= link_to 'BBS', posts_path %></lsi>
                 <li>
                      <form name="form1" class="header-timebox">

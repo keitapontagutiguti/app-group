@@ -28,7 +28,7 @@
     <div class="col-md-5 research">
     	<h3><i class="fa fa-search-plus fa-2x" aria-hidden="true"></i>Search an event</h3>
     	<p>既に作成されたあなたに合うイベントを探す</p>
-    	<div class="go-to-research-event"><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= link_to 'Research an event', events_path %></div>
+    	<div class="go-to-research-event dropdown"><i class="fa fa-hand-o-right" aria-hidden="true"><%= render template: 'events/_search_dropdown' %></i></div>
     </div>
     <div class="col-md-1"></div>	
 </div>

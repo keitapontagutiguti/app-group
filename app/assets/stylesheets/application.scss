@@ -17,6 +17,7 @@
 
 @import 'bootstrap-datetimepicker';
 @import url(http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps);
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface|Ravi+Prakash);
 
 $fontS:15px;
 $fontM:20px;
@@ -35,8 +36,12 @@ $fontLL:40px;
 	margin:0 auto;
 	text-align: center;
 }
+@mixin FontType{
+	font-family: 'Bree Serif', serif;
+}
 
 *{
+	@include FontType;
 	padding: 0;
 	margin: 0;
 }
@@ -77,7 +82,7 @@ $fontLL:40px;
 	border-radius: 0;
 }
 .h-title{
-	font-size: 45px;
+	font-size: 37px;
 }
 .nav{
 	a{
@@ -103,7 +108,7 @@ $fontLL:40px;
 
 
 /*ユーザーページ*/
-.regstration-box,.edit-profile-box,.edit-account-box{
+.regstration-box,.edit-profile-box,.edit-account-box,.user-login-box{
 	@include BaseWidth;
 }
 .user-info-head{

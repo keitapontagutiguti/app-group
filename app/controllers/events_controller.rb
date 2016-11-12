@@ -25,35 +25,41 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
-    if @event.save
-    	redirect_to events_path
-    	flash[:notice] = "The Event was successfly posted!!"
-    else
-    	Event.new(event_params)
-    	render 'new'
-    end
-  end
+    	if @event.save
+    		flash[:notice] = "The Event was successfly posted!!"
+    		redirect_to events_path
+    	else
+    		Event.new(event_params)
+    		render 'new'
+    	end
+  	end
 
 	def update
 		if @event.update(event_params)
+			flash[:notice] = "This Event was successfly updated."
 			redirect_to event_path(@event)
-    	flash[:notice] = "This Event was updated."
-    else
-    	redirect_to event_path(@event)
-    	flash[:notice] = "Update was failed."
-    end
+   		else
+   			flash[:notice] = "Update was failed."
+    		redirect_to event_path(@event)
+    	end
 	end
 
 	def destroy
-		@event.destroy
-		redirect_to events_path
+		if @event.destroy
+			flash[:notice] = "The Event '#{@event.title}' was successfly eliminated."
+			redirect_to events_path
+   		else
+   			flash[:notice] = "The elimination was failed."
+    		redirect_to event_path(@event)
+    	end
+		
 	end
 
 	def tag_search
-
-		render action: 'index'
-		redirect_to events_path
-	end
+		# @selected_tag = tag_search.
+		@tagSearch = Event.search(:tags_name_in => [:tags])
+		@events = @tagSearch.result(district: true)
+	end	
 
 	private
 

@@ -13,13 +13,8 @@
   </section>
   <section class="base-sentence">
     <span class="label label-info user-info-head">GENDER</span>
-    <% if @user.gender == 1 %>   
-      <h3 class="user-info-date-M">MEN</h3>
-    <% else %>
-      <h3 class="user-info-date-M">WOMEN</h3>
-    <% end %>
+    <%= user_gender(@user) %>
   </section>
-
   <section class="base-sentence">
     <span class="label label-warning user-info-head">NATIONALITY</span>
     <h3 class="user-info-date-L"><%= @user.nationality %></h3>

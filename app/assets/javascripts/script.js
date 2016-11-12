@@ -30,9 +30,9 @@ $(function(){
 $(function() {
     var topBtn = $('#page-top');    
     topBtn.hide();
-    //スクロールが800に達したらボタン表示
+    //スクロールが600に達したらボタン表示
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 800) {
+        if ($(this).scrollTop() > 600) {
             topBtn.fadeIn();
         } else {
             topBtn.fadeOut();

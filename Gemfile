@@ -44,6 +44,8 @@ gem 'bootstrap-sass'
 
 gem 'font-awesome-rails'
 
+gem 'kaminari'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-fileinput'
 end

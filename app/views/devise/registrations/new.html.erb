@@ -1,5 +1,5 @@
-<div class="base-width">
-<h2>Sign up</h2>
+<div class="regstration-box">
+<h2>Regstration</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -21,8 +21,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :profile_image, class:"content" %><br>
-    <%= f.file_field :image, class:"content" %>
+    <%= f.label :profile_image %><br>
+    <%= f.file_field :image, class:'file', "data-show-upload" => false  %>
   </div>
 
   <div class="form-group">

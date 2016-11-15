@@ -4,11 +4,7 @@
 <h1 class="user-info-date-LL">MY PAGE</h1> 
   <section class="image-box">
     <span class="label">IMAGE</span>
-    <% if @user.image? %>
-      <%= image_tag @user.image.url %>
-    <% else %>
-      <%= image_tag "noimage.gif" %>
-    <% end %>
+    <%= user_image(@user) %>
   </section>
 
   <section class="base-sentence">
@@ -17,13 +13,8 @@
   </section>
   <section class="base-sentence">
     <span class="label label-info user-info-head">GENDER</span>
-    <% if @user.gender == 1 %>   
-      <h3 class="user-info-date-M">MEN</h3>
-    <% else %>
-      <h3 class="user-info-date-M">WOMEN</h3>
-    <% end %>
+    <%= user_gender(@user) %>
   </section>
-
   <section class="base-sentence">
     <span class="label label-warning user-info-head">NATIONALITY</span>
     <h3 class="user-info-date-L"><%= @user.nationality %></h3>
@@ -34,12 +25,10 @@
     <h3 class="user-info-date-M"><%= @user.inform %></h3>
   </section>
 
-  <% if current_user == @user %>
-    <section class="user-info-head">
-      <p><%= link_to 'LOGIN EDIT', edit_user_registration_path %></p>
-      <p><%= link_to 'PROFILE EDIT', edit_user_path %></p>
-    </section>
-  <% end %>
+  <section class="user-info-head">
+    <p><%= link_to 'LOGIN EDIT', edit_user_registration_path %></p>
+    <p><%= link_to 'PROFILE EDIT', edit_user_path %></p>
+  </section>
 </div>
 
 <div class="col-md-5"></div>

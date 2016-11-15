@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
   resources :posts do
-    resource :replies, :only => [:create, :destroy]
+    resources :replies, :only => [:create, :destroy]
   end
 
   resources :users, only: [:edit, :update, :show] do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   root 'base#top'
 
-
+  get 'events/tag_search'
 
 
 

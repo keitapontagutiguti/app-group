@@ -24,45 +24,49 @@
 
 <% if @events.present? %>
 
-<table class="table table-hover table-condensed index-table">
-  <thead>
-    <th>Image</th>
-    <th>Title</th>
-    <th>Text</th>
-    <th>Date</th>
-    <th>Place</th>
-    <th>Capacity</th>
-    <th>Tag</th>
-    <th>Comment</th>
-  </thead>
 
-  <tbody>
 
-  <% @events.each do |event| %>
-    <%= link_to event_path(event) do %>
+<table class="table">
+<tbody>
+<% @events.each do |event| %>
+
+<%= link_to event_path(event) do %>
+  
       <tr>
         <% if event.image? %>
-        　 <td><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %></td>
+          <td rowspan="2">
+        　   <%= link_to event_path(event) do %><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %><% end %>
+          </td>
         <% else %>
-          <td><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %></td>
+          <td rowspan="2">
+            <%= link_to event_path(event) do %><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %><% end %>
+          </td> 
         <% end %>
-
-        <td><%= link_to event.title, event_path(event) %></td>
-        <td><%= event.body %></td>
-        <td><%= event.day %></td>
-        <td><%= event.area %></td>
-        <td><%= event.capacity %></td>
-        <td><%= render 'tag_list', tag_list: event.tag_list %></td>
-        <td>Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
+<div class="padding-adj">
+        <td class=""><%= link_to event.title, event_path(event), class: "index-title label label-info padding-adj" %></td>
+        <td class="padding-adj"><%= event.day %></td>
+        <td class="padding-adj"><%= event.area %></td>
+        <td class="padding-adj"><%= event.capacity %></td>
+        <td class="padding-adj"><%= render 'tag_list', tag_list: event.tag_list %></td>
+        <td class="padding-adj">Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
+</div>
       </tr>
-    <% end %>
-  <% end %>
+      <tr>
+        <td class="index-detail jumbotron" colspan="6" ><%= event.body %></td>
+      </tr>
+           
+<% end %>
+       
+<% end %>
+</tbody> 
+</table> 
 
-  </tbody>
-</table>
+
+
 
 <%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
 
 <% end %>
+
 
 </div>

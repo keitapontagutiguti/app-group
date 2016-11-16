@@ -35,6 +35,18 @@
     color: white;
   }
 }
+.index-title{
+	font-size: $fontL;
+}
+.index-detail{
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	border-radius: 3px;
+  	border: none;
+}
+.padding-adj{
+	padding-top: 10px;
+}
 
 /*show*/
 .show-title{
@@ -43,5 +55,20 @@
 	font-family: 'Abril Fatface';
 }
 .show-box{
+	margin: 10px 0;
 	font-size: $fontM;
 }	
+.image-padding{
+	padding: 2px;
+}
+.show-middle{
+	padding: 20px;
+	background-color: rgba(200,200,200,0.3);
+	border-radius: 10px;
+}
+
+/*tag*/
+.tag{
+	padding: -1px;
+	margin: 1px;
+}

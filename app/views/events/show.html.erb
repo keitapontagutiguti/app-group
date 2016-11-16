@@ -10,14 +10,16 @@
     <strong><%= @event.title %></strong>
 </div>
 
-<div class="col-md-4 show-box">
+<div class="col-md-4 col-sm-6 show-box">
   <% if @event.image? %>
-    <p><%= image_tag @event.image.url %></p>
+    <p class="image-padding"><%= image_tag @event.image.url %></p>
   <% else %>
-    <p><%= image_tag 'noimage.gif' %></p>
+    <p class="image-padding"><%= image_tag 'noimage.gif' %></p>
   <% end %>
 
   <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
+
+
 
   <% if current_user.id == @event.user_id? %>
     <p>
@@ -29,11 +31,10 @@
   <p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
 
 
-  
 
 </div>
 
-<div class="col-md-4 show-box">
+<div class="col-md-4 col-sm-6 show-box show-middle">
 
   <p>
     <strong>Place:</strong>
@@ -51,11 +52,12 @@
   </p>
 
   <p>
-    <strong>Detail</strong>
-    <div class="detail"><%= @event.body %></div>
+    <strong>Detail:</strong>
+    <p class=""><%= @event.body %></p>
   </p>
 
 </div>
+
 
 <div class="col-md-4 show-box">  
   <% @event.comments.each do |comment| %>

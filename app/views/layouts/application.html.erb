@@ -22,7 +22,7 @@
 			</a>
 		</div>
 		
-		<div class="collapse navbar-collapse" id="navbarEexample7">
+		<div class="collapse navbar-collapse dropdown" id="navbarEexample7">
 			<ul class="nav navbar-nav">
 				<li><%= link_to 'Top', root_path %></li>
 				<% if user_signed_in? %>
@@ -35,7 +35,7 @@
                   <li class="login"><%= link_to "Login", new_user_session_path %></li>
                 <% end %>
                 <li><%= link_to 'Event list', events_path %></li>
-                <li class="dropdown header-height"><%= render template: 'events/_search_dropdown' %></li>
+                <li class="header-search-btn"><%= render template: 'events/_search_dropdown' %></li>
                 <li><%= link_to 'BBS', posts_path %></lsi>
                 <li>
                      <form name="form1" class="header-timebox">

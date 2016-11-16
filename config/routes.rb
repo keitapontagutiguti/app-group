@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-
   resources :posts do
     resources :replies, :only => [:create, :destroy]
   end
@@ -14,7 +13,10 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :show] do
   end
 
+  get 'events/tag_search'
+
   resources :events do
+    
     resources :comments
   end 
   
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
 
   root 'base#top'
 
-  get 'events/tag_search'
+  
 
 
 

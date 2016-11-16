@@ -23,12 +23,20 @@
     <div class="col-md-5 make">
         <h3><i class="fa fa-plus fa-2x" aria-hidden="true"></i>Make an event</h3> 
         <p>あなたの趣味や好きなことをみんなで楽しもう</p>
-        <div class="go-to-new-event"><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= link_to 'Make an event', new_event_path %></div>
+        <div class="go-to-new-event">
+            <i class="fa fa-hand-o-right" aria-hidden="true">
+                <%= link_to new_event_path, class: 'btn btn-default fix-indent', type: 'button' do %>
+                    Make an event <span class="fa fa-edit fa-lg"></span>
+                <% end %>
+            </i></div>
     </div>
     <div class="col-md-5 research">
-    	<h3><i class="fa fa-search-plus fa-2x" aria-hidden="true"></i>Search an event</h3>
+    	<h3><i class="fa fa-search-plus fa-2x" aria-hidden="true"></i>Search events</h3>
     	<p>既に作成されたあなたに合うイベントを探す</p>
-    	<div class="go-to-research-event dropdown"><i class="fa fa-hand-o-right" aria-hidden="true"><%= render template: 'events/_search_dropdown' %></i></div>
+    	<div class="go-to-research-event dropdown">
+            <i class="fa fa-hand-o-right" aria-hidden="true"><%= render template: 'events/_search_dropdown' %>        
+            </i>
+        </div>
     </div>
     <div class="col-md-1"></div>	
 </div>

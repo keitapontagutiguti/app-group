@@ -1,70 +1,65 @@
-<div class="center-block base-width">
+<div class="event-box">
 
-
-<p id="notice"><%= notice %></p>
-
-<div class="col-md-3">
-<% if @event.image? %>
-  <p><%= image_tag @event.image.url %></p>
-<% else %>
-  <p><%= image_tag 'noimage.gif' %></p>
+<% if flash[:notice].present? %>
+  <p id="notice" class="well">
+    <%= notice %>
+  </p>
 <% end %>
 
-<p>
-  <!-- <strong>Tag:</strong> -->
-  <%= render 'tag_list', tag_list: @event.tag_list %>
-</p>
+<div class="col-md-3">
+  <% if @event.image? %>
+    <p><%= image_tag @event.image.url %></p>
+  <% else %>
+    <p><%= image_tag 'noimage.gif' %></p>
+  <% end %>
+
+  <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
 </div>
 
 <div class="col-md-1"></div>
 
 <div class="col-md-8">
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @event.title %>
+  </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @event.body %>
-</p>
+  <p>
+    <strong>Body:</strong>
+    <%= @event.body %>
+  </p>
 
-<p>
-	<strong>Place:</strong>
-	<%= @event.area %>
-</p>
+  <p>
+  	<strong>Place:</strong>
+  	<%= @event.area %>
+  </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.day %>
-</p>
+  <p>
+    <strong>Date:</strong>
+    <%= @event.day %>
+  </p>
 
-<p>
-  <strong>Capacity:</strong>
-  <%= @event.capacity %>
-</p>
+  <p>
+    <strong>Capacity:</strong>
+    <%= @event.capacity %>
+  </p>
+  <% @event.comments.each do |comment| %>
 
-<!-- <p>
-  <strong>Tag:</strong>
-  <%= render 'tag_list', tag_list: @event.tag_list %>
-</p>
- -->
-<% @event.comments.each do |comment| %>
-
-    <pre><%= comment.body %></pre>
-<% end %>
-
-<%= form_for([@event,@event.comments.build]) do |f| %>
-    <p><%= f.label :body %></p><br>
-    <p><%= f.text_area :body, :rows => 5 %></p>
-    <%= f.submit 'コメントを投稿する' %>
+      <pre><%= comment.body %></pre>
   <% end %>
- 
-<p>
-  <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
-  <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, confirm: 'Are you sure?' %>
-</p>
-<p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
+
+  <%= form_for([@event,@event.comments.build]) do |f| %>
+      <p><%= f.label :body %></p><br>
+      <p><%= f.text_area :body, :rows => 5 %></p>
+      <%= f.submit 'コメントを投稿する' %>
+    <% end %>
+   
+  <p>
+    <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
+    <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, 'data-confirm' => 'Are you sure?' %>
+    <%= link_to 'Back', events_path, class: "btn btn-link" %>
+  </p>
+  
 </div>
 
 <div class="center-block base-width">

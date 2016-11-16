@@ -19,8 +19,16 @@
 
   <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
 
-
-
+  <% if @event.joins.count < @capacity %>
+    <% if @event.joined_by? current_user %>
+      <%= link_to "JOIN解除", event_joins_path(@event), class:"btn btn-info form-control", method: :delete %>
+    <% else %>
+      <%= link_to "JOIN",event_joins_path(@event), class:"btn btn-info form-control", method: :post %>
+    <% end %>
+  <% else %>
+    人数オーバーです。参加できません
+  <% end %>
+ 
   <% if current_user.id == @event.user_id? %>
     <p>
       <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
@@ -28,9 +36,7 @@
     </p>
   <% end %>
 
-  <p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
-
-
+  <p><%= link_to 'Back', events_path, class: "btn btn-link back-btn" %></p>
 
 </div>
 
@@ -67,7 +73,7 @@
 
   <%= form_for([@event,@event.comments.build]) do |f| %>
 <!--       <p><%= f.label :body %></p><br> -->
-      <p><%= f.text_area :body, :rows => 5 %></p>
+      <p><%= f.text_area :body, :rows => 5, :cols => 30 %></p>
       <%= f.submit 'コメントを投稿する', class: "btn btn-default" %>
   <% end %>
 </div>

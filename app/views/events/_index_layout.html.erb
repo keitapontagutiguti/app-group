@@ -42,14 +42,12 @@
             <%= link_to event_path(event) do %><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %><% end %>
           </td> 
         <% end %>
-<div class="padding-adj">
         <td class=""><%= link_to event.title, event_path(event), class: "index-title label label-info padding-adj" %></td>
         <td class="padding-adj"><%= event.day %></td>
         <td class="padding-adj"><%= event.area %></td>
         <td class="padding-adj"><%= event.capacity %></td>
         <td class="padding-adj"><%= render 'tag_list', tag_list: event.tag_list %></td>
         <td class="padding-adj">Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
-</div>
       </tr>
       <tr>
         <td class="index-detail jumbotron" colspan="6" ><%= event.body %></td>

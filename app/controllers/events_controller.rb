@@ -15,6 +15,8 @@ class EventsController < ApplicationController
 
 	def show
 		@comment = Comment.new
+    	@event = Event.find(params[:id])
+    	@capacity = @event.capacity
 	end
 
 	def new

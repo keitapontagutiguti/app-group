@@ -47,10 +47,18 @@
 
 <%= form_for([@event,@event.comments.build]) do |f| %>
     <p><%= f.label :body %></p><br>
-    <p><%= f.text_area :body, :rows => 5 %></p>
+    <p><%= f.text_area :body, :rows => 5 ,:cols => 90 %></p>
     <%= f.submit 'コメントを投稿する' %>
   <% end %>
- 
+<% if @event.joins.count < @capacity %>
+  <% if @event.joined_by? current_user %>
+    <%= link_to "JOIN解除", event_joins_path(@event), class:"btn btn-info", method: :delete %>
+  <% else %>
+    <%= link_to "JOIN",event_joins_path(@event), class:"btn btn-info", method: :post %>
+  <% end %>
+<% else %>
+  人数オーバーです。参加できません
+<% end %>
 <p><%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %></p>
 <p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
 

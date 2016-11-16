@@ -6,7 +6,11 @@
   </p>
 <% end %>
 
-<div class="col-md-3">
+<div class="container show-title">
+    <strong><%= @event.title %></strong>
+</div>
+
+<div class="col-md-4 show-box">
   <% if @event.image? %>
     <p><%= image_tag @event.image.url %></p>
   <% else %>
@@ -14,24 +18,26 @@
   <% end %>
 
   <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
+
+  <% if current_user.id == @event.user_id? %>
+    <p>
+      <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
+      <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, 'data-confirm' => 'Are you sure?' %>
+    </p>
+  <% end %>
+
+  <p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
+
+
+  
+
 </div>
 
-<div class="col-md-1"></div>
-
-<div class="col-md-8">
-  <p>
-    <strong>Title:</strong>
-    <%= @event.title %>
-  </p>
+<div class="col-md-4 show-box">
 
   <p>
-    <strong>Body:</strong>
-    <%= @event.body %>
-  </p>
-
-  <p>
-  	<strong>Place:</strong>
-  	<%= @event.area %>
+    <strong>Place:</strong>
+    <%= @event.area %>
   </p>
 
   <p>
@@ -43,23 +49,27 @@
     <strong>Capacity:</strong>
     <%= @event.capacity %>
   </p>
+
+  <p>
+    <strong>Detail</strong>
+    <div class="detail"><%= @event.body %></div>
+  </p>
+
+</div>
+
+<div class="col-md-4 show-box">  
   <% @event.comments.each do |comment| %>
 
       <pre><%= comment.body %></pre>
   <% end %>
 
   <%= form_for([@event,@event.comments.build]) do |f| %>
-      <p><%= f.label :body %></p><br>
+<!--       <p><%= f.label :body %></p><br> -->
       <p><%= f.text_area :body, :rows => 5 %></p>
-      <%= f.submit 'コメントを投稿する' %>
-    <% end %>
-   
-  <p>
-    <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
-    <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, 'data-confirm' => 'Are you sure?' %>
-    <%= link_to 'Back', events_path, class: "btn btn-link" %>
-  </p>
-  
+      <%= f.submit 'コメントを投稿する', class: "btn btn-default" %>
+  <% end %>
 </div>
 
-<div class="center-block base-width">
+
+</div>
+

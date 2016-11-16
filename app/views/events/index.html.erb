@@ -1,14 +1,28 @@
 <div class="event-box">
+  
+  <% if flash[:notice] == "No results." %>
+    <div id="notice" class="well">
+      <%= search_form_for Event.search(params[:q]) do |f| %>
+        <strong><%= notice %>Try Again.</strong>
+        <div class="form-group">
+          <%= f.label :title_or_body_cont, 'Keywords' %><br>
+          <%= f.search_field :title_or_body_cont, class: 'form-control' %>
+        </div>
+        <div class="action">
+          <%= f.submit class: "btn btn-primary form-control" %>
+        </div>
+      <% end %>
+    </div>
+  <% elsif flash[:notice].present? %>
+    <div id="notice" class="well">
+      <strong><%= notice %></strong>
+    </div>
+  <% end %>
 
-<% if flash[:notice].present? %>
-  <p id="notice" class="well">
-    <%= notice %>
-  </p>
-<% end %>
 
+<%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
 
-<%= link_to "Create Event!", new_event_path, class: "btn btn-primary form-control create-event-btn" %>
-
+<% if @events.present? %>
 
 <table class="table table-hover table-condensed index-table">
   <thead>
@@ -25,29 +39,30 @@
   <tbody>
 
   <% @events.each do |event| %>
+    <%= link_to event_path(event) do %>
+      <tr>
+        <% if event.image? %>
+        　 <td><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %></td>
+        <% else %>
+          <td><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %></td>
+        <% end %>
 
-  
-  <tr>
-  <%= link_to event_path(event) do %>
-    <% if event.image? %>
-    　 <td><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %></td>
-    <% else %>
-      <td><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %></td>
+        <td><%= link_to event.title, event_path(event) %></td>
+        <td><%= event.body %></td>
+        <td><%= event.day %></td>
+        <td><%= event.area %></td>
+        <td><%= event.capacity %></td>
+        <td><%= render 'tag_list', tag_list: event.tag_list %></td>
+        <td>Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
+      </tr>
     <% end %>
-
-    <td><%= link_to event.title, event_path(event) %></td>
-    <td><%= event.body %></td>
-    <td><%= event.day %></td>
-    <td><%= event.area %></td>
-    <td><%= event.capacity %></td>
-    <td><%= render 'tag_list', tag_list: event.tag_list %></td>
-    <td>Comment(<strong><%= event.comments.count %></strong>)</td>
-  <% end %>
-  </tr>
-  
   <% end %>
 
   </tbody>
 </table>
+
+<%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
+
+<% end %>
 
 </div>

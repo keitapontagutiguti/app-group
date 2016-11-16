@@ -17,7 +17,8 @@
 .header-search-btn{
 	margin: 8px 0;
 }
-/*ビューのindex関連*/
+
+/*index*/
 .create-event-btn{
 	margin: 15px 0;
 }
@@ -34,3 +35,13 @@
     color: white;
   }
 }
+
+/*show*/
+.show-title{
+	padding: 15px;
+	font-size: $fontLL;
+	font-family: 'Abril Fatface';
+}
+.show-box{
+	font-size: $fontM;
+}	

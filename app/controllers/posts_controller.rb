@@ -10,8 +10,8 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new(params.require(:post).permit(:title,:body))
-  		@post.save
-  		redirect_to post_path(@post.id)
+  	@post.save
+  	redirect_to post_path(@post.id)
 	end
 
 	def show
@@ -22,11 +22,11 @@ class PostsController < ApplicationController
 	def edit
 	end
 
-	def update
-         @post.title = params[:title]
-         @post.body = params[:body]
-         @post.save
-         redirect_to post_path
+  def update
+    @post.title = params[:title]
+    @post.body = params[:body]
+    @post.save
+    redirect_to post_path
 	end
 
 	def destroy

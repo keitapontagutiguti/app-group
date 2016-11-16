@@ -8,5 +8,5 @@ class Event < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
   def joined_by? user
     joins.where(user_id: user.id).exists?
-end
+  end
 end

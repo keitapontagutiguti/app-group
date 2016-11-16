@@ -1,0 +1,54 @@
+<!-- <div class="dropdown"> -->
+	<button class="btn btn-default" type="button" data-toggle="dropdown">
+    Find your Events! <span class="fa fa-search fa-lg"></span>
+	</button>
+	<ul class="dropdown-menu fix-indent" role="menu">
+
+	<%= search_form_for Event.search(params[:q]) do |f| %>
+
+  <p>Search from...</p>
+
+ 	<div class="form-group">
+    <%= f.label :title_or_body_cont, 'Keywords' %><br>
+    <%= f.search_field :title_or_body_cont, class: 'form-control' %>
+	</div>
+
+  <div class="form-group">
+    <%= f.label :day, 'Date' %><br>
+    <div class='input-group date datepicker'>
+      <span class="input-group-addon">
+        <span class="fa fa-calendar"></span>
+      </span>
+      <%= f.search_field :day_gteq, include_blank: true, class: 'form-control' %>
+    </div>
+    <div class='input-group date datepicker'>
+      <span class="input-group-addon">
+        <span class="fa fa-calendar"></span>
+      </span>
+      <%= f.search_field :day_lteq, include_blank: true, class: 'form-control' %>
+    </div>
+	</div>
+
+  <div class="form-group">
+  	<%= f.label :area_cont, 'Area' %><br>
+  	<%= f.search_field :area_cont, class: 'form-control' %>
+	</div>
+
+  <div class="form-group">
+    <%= f.label :capacity_lteq, 'Capacity' %><br>
+    <%= f.search_field :capacity_lteq, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tags_name_in, 'Tag' %><br>
+    <%= f.search_field :tags_name_in, class: 'form-control' %>
+  </div>
+
+	<div class="action">
+   	<%= f.submit class: "btn btn-primary form-control" %>
+	</div>
+
+	<% end %>
+
+	</ul>
+<!-- </div> -->

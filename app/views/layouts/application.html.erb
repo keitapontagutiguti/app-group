@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body onload="func()">
 
 <nav class="navbar navbar-inverse navbar-config">
 	<div class="container-fluid">
@@ -22,18 +22,28 @@
 			</a>
 		</div>
 		
-		<div class="collapse navbar-collapse" id="navbarEexample7">
+		<div class="collapse navbar-collapse dropdown" id="navbarEexample7">
 			<ul class="nav navbar-nav">
-				
+				<li><%= link_to 'Top', root_path %></li>
 				<% if user_signed_in? %>
  
-			        <li><%= link_to 'MY PAGE', user_path(current_user) %></li>
+			        <li class="header-height"><%= link_to 'MY PAGE', user_path(current_user) %></li>
 			        <li class="header-height">Logged in as <%= current_user.name %></li>
 			        <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
-          <% else %>
-                  <li class="signin"><%= link_to "SIGN IN", new_user_registration_path %></li>
-                  <li class="login"><%= link_to "LOGIN", new_user_session_path %></li>
-          <% end %>
+                <% else %>
+                    <li class="signin"><%= link_to "Regstration", new_user_registration_path %></li>
+                  <li class="login"><%= link_to "Login", new_user_session_path %></li>
+                <% end %>
+                <li><%= link_to 'Event list', events_path %></li>
+                <li class="header-search-btn"><%= render template: 'events/_search_dropdown' %></li>
+                <li><%= link_to 'BBS', posts_path %></lsi>
+                <li>
+                     <form name="form1" class="header-timebox">
+                     <input size="5" name="text1" class="header-time">
+                     <form name="form1" class="header-timebox">    
+                     <input type="text" size="3" name="text2" class="header-time-sec">
+                     </form>
+                </li>
 			</ul>
 		</div>
 
@@ -42,5 +52,17 @@
 
 <%= yield %>
 
+<p id="page-top"><a href="#wrap">PAGE TOP</a></p>
+<script>
+	function func() {
+		dd = new Date();
+		hour = dd.getHours(); if (hour < 10) hour = hour;
+		min = dd.getMinutes(); if (min < 10) min = "0" + min;
+		sec = dd.getSeconds(); if (sec < 10) sec = "0" + sec;
+        document.form1.text1.value = hour + ":" + min;
+        document.form1.text2.value = sec;
+		setTimeout("func()", 1000);
+    }
+</script>
 </body>
 </html>

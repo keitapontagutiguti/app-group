@@ -3,9 +3,12 @@
 
 <%= form_for(@post) do |f| %>
 <% if @post.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-    </div>
+	<div id="error_explanation" class="alert alert-danger">
+	 <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+	</div>
+  <% end %>
+  <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
   <% end %>
 
 <div class="form-group">
@@ -20,8 +23,8 @@
 
 
  <div class="form-group">
-		<%= f.label :label_list, "tag(separated by commas)" %><br>
-		<%= f.text_field_tag "post[interest_list]", @post.interest_list.join(','), class:'form-control' %>
+	<%= f.label :label_list, "tag(separated by commas)" %><br>
+	<%= f.text_field_tag "post[interest_list]", @post.interest_list.join(','), class:'form-control' %>
 </div>
 <%= f.submit class: "btn" %>
 

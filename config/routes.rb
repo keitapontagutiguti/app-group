@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get "/posts"=> "posts#index",as:"yasui"
+  
 
-  get"/replies"=>"replies#index",as:"replies"
+ 
 
   devise_for :users
 

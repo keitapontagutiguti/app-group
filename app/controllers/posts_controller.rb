@@ -11,6 +11,11 @@ class PostsController < ApplicationController
 	end
 
 	def create
+<<<<<<< HEAD
+		@post = Post.new(params.require(:post).permit(:title,:body))
+  	@post.save
+  	redirect_to post_path(@post.id)
+=======
 	  @post = Post.new(post_params)
     @post.user_id = current_user.id
     respond_to do |format|
@@ -22,6 +27,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+>>>>>>> 7d79295f92e03f882b0bcb27d7adec0af8b56db1
 	end
 
 	def show
@@ -32,11 +38,11 @@ class PostsController < ApplicationController
 	def edit
 	end
 
-	def update
-         @post.title = params[:title]
-         @post.body = params[:body]
-         @post.save
-         redirect_to post_path
+  def update
+    @post.title = params[:title]
+    @post.body = params[:body]
+    @post.save
+    redirect_to post_path
 	end
 
 	def destroy

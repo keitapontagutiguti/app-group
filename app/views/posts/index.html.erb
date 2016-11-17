@@ -5,24 +5,34 @@
 </div>
 
 <div class="post-index-box">
- <div class="board_body"><h2><span class="head-name">ALL TOPIC LIST</span>　　　　　　　　　　　　　If you want to create</h2>
- <p class="btn_post"><%=link_to "new",new_post_path,:style=>"text-decortion:none;" %></p>
-<table class="table table-striped">
-	<tbody>
-	<% @posts.each do |post| %>
-	<tr>
-	<th scope="row""> <%# post.id %></th>
-		<td>
-			<p class="post-index-list">
+
+ <div class="board_body">
+   <h2>
+   <span class="head-name">
+   	 ALL TOPIC LIST
+   </span>　　　　　　　　　　　　　
+   If you want to create</h2>
+   <p class="btn_post"><%=link_to "new",new_post_path,:style=>"text-decortion:none;" %>   	
+   </p>
+   </div>
+	<table class="table table-striped">
+		<tbody>
+			<% @posts.each do |post| %>
+		<tr>
+			<th scope="row""></th>
+			<td>
+				<p class="post-index-list">
 				<%=link_to post.title, post_path(post) %>
+				<%=  @user.name  %>
+				<%= %>
 				<%= render 'tag_list', tag_list: post.interest_list %>
 			</p>
-		</td>
-	</tr>
-	<% end %>
-	</tbody>
+			</td>
+			</tr>
+			<% end %>
+		</tbody>
 	
-</table>
+		</table>
 </div>
 <div class="page"><%= paginate @posts %></div>
 </div>

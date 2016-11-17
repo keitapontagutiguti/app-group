@@ -10,7 +10,7 @@ class JoinsController < ApplicationController
   def destroy
     @join = current_user.joins.find_by!(event_id:params[:event_id])
     @join.destroy
-      redirect_to events_path(@event), notice: "お気に入りを解除しました"
+      redirect_to events_path(@event), notice: "参加をやめました"
     end
 end
 

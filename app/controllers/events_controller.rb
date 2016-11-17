@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
-
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 
@@ -12,12 +10,12 @@ class EventsController < ApplicationController
 			flash[:notice] = "No results."
 		end
 		@events = Event.page(params[:page]).per(10)
-	end
+  end
 
 	def show
 		@comment = Comment.new
-    	@event = Event.find(params[:id])
-    	@capacity = @event.capacity
+  	@event = Event.find(params[:id])
+  	@capacity = @event.capacity
 	end
 
 	def new
@@ -77,7 +75,7 @@ class EventsController < ApplicationController
 			@event = Event.find(params[:id])
 		end
 		def event_params
-			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags)
+			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags, :user_id, :event_id)
 		end
 
 end

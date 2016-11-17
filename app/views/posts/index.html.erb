@@ -23,7 +23,7 @@
 			<td>
 				<p class="post-index-list">
 				<%=link_to post.title, post_path(post) %>
-				<%=  @user.name  %>
+				<%=  @user.name %>
 				<%= %>
 				<%= render 'tag_list', tag_list: post.interest_list %>
 			</p>

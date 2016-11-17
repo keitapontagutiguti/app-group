@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
 
 	acts_as_taggable
   belongs_to :event
-	has_many :joins, dependent: :destroy
+	has_many :joins, dependent: :destroy 
+  has_many :join_users ,through: :joins, source: :user
 	has_many :comments, dependent: :destroy
 
   def joined_by? user

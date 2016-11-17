@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :comments
   has_many :posts
-  has_many :events
+  has_many :join_events, through: :joins, source: :event
   has_many :joins, dependent: :destroy
 end

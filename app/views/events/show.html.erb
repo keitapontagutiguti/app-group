@@ -28,7 +28,9 @@
   <% else %>
     人数オーバーです。参加できません
   <% end %>
- 
+ <% @event.join_users.each do |user| %>
+  <%= user.name %>
+ <% end %>
   <% if current_user.id == @event.user_id? %>
     <p>
       <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>

@@ -72,7 +72,6 @@
   <% end %>
 
   <%= form_for([@event,@event.comments.build]) do |f| %>
-<!--       <p><%= f.label :body %></p><br> -->
       <p><%= f.text_area :body, :rows => 5, :cols => 30 %></p>
       <%= f.submit 'コメントを投稿する', class: "btn btn-default" %>
   <% end %>

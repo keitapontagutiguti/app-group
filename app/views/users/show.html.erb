@@ -1,12 +1,12 @@
-<div class="col-md-1"></div>
-
-<div class="col-md-5">
-<h1 class="user-info-date-LL">MY PAGE</h1> 
+<div class="col-md-12">
+<h1 class="user-info-date-LL user-head">MY PAGE</h1> 
   <section class="image-box">
     <span class="label">IMAGE</span>
     <%= user_image(@user) %>
   </section>
-
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-3">
   <section class="base-sentence">
     <span class="label label-danger user-info-head">NAME</span>
     <h3 class="user-info-date-L"><%= @user.name %></h3>
@@ -19,18 +19,19 @@
     <span class="label label-warning user-info-head">NATIONALITY</span>
     <h3 class="user-info-date-L"><%= @user.nationality %></h3>
   </section>
-  
-  <section class="base-sentence">
-    <span class="label label-success user-info-head">INTRODUCTION</span>
-    <h3 class="user-info-date-M"><%= @user.inform %></h3>
-  </section>
-
   <section class="user-info-head">
     <p><%= link_to 'LOGIN EDIT', edit_user_registration_path %></p>
     <p><%= link_to 'PROFILE EDIT', edit_user_path %></p>
   </section>
 </div>
+<div class="col-md-5">
+  <section class="base-sentence">
+    <span class="label label-success user-info-head">INTRODUCTION</span>
+    <h3 class="user-info-date-M"><%= @user.inform %></h3>
+  </section>
+</div>
+<div class="col-md-2"></div>
 
-<div class="col-md-5"></div>
 
-<div class="col-md-1"></div>
+
+

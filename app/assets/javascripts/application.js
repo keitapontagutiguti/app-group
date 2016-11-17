@@ -16,7 +16,5 @@
 //= require bootstrap-fileinput
 //= require moment
 //= require bootstrap-datetimepicker
-//= require jquery.turbolinks
-//= require turbolinks
 //= require_tree .
 

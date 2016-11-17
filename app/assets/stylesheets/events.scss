@@ -7,7 +7,18 @@
 /*全体*/
 .event-box{
 	@include BaseWidth;
+	.well{
+	   margin-top:20px;
+	}
+	.page{
+		text-align: center;
+		font-size: 20px;
+	    a{
+	    	font-size: 20px;
+	    }
+	}
 }
+
 
 .index-table{
 	line-height: 100px;
@@ -17,7 +28,8 @@
 .header-search-btn{
 	margin: 8px 0;
 }
-/*ビューのindex関連*/
+
+/*index*/
 .create-event-btn{
 	margin: 15px 0;
 }
@@ -33,4 +45,43 @@
 	&:hover {
     color: white;
   }
+}
+.index-title{
+	font-size: $fontL;
+}
+.index-detail{
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	border-radius: 3px;
+  	border: none;
+}
+.padding-adj{
+}
+
+/*show*/
+.show-title{
+	padding: 15px;
+	font-size: $fontLL;
+	font-family: 'Abril Fatface';
+}
+.show-box{
+	margin: 10px 0;
+	font-size: $fontM;
+}	
+.image-padding{
+	padding: 2px;
+}
+.show-middle{
+	padding: 20px;
+	background-color: rgba(200,200,200,0.3);
+	border-radius: 10px;
+}
+.back-btn{
+	margin-top: 10px;
+}
+
+/*tag*/
+.tag{
+	padding: -1px;
+	margin: 1px;
 }

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @events = @user.events.all
+    @event = Event.where(user_id:@user.id)
   end
  
   def edit
@@ -17,6 +17,11 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+  def tag_search
+    @tag = params[:id]
+    @tagSearch = Event.search(:tags_name_in => [@tag])
+    @events = @tagSearch.result(district: true)
+  end 
 
   private
     def user_params

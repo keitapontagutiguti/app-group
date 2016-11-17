@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  
-
- 
 
   devise_for :users
 
@@ -11,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:edit, :update, :show] do
+    get :favorites, on: :member
   end
 
   get 'events/tag_search'
@@ -18,6 +16,7 @@ Rails.application.routes.draw do
   resources :events do
     
     resources :comments
+    resource :joins, only: [:create, :destroy]
   end 
   
 

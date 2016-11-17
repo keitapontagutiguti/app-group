@@ -10,4 +10,8 @@ class Event < ActiveRecord::Base
   def joined_by? user
     joins.where(user_id: user.id).exists?
   end
+
+  	validates :title, presence: true
+  	validates :capacity, presence: true
+
 end

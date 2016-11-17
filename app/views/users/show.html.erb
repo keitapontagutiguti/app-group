@@ -33,8 +33,12 @@
   <section class="post-panel">
     <tbody>
       <tr>
-        <td><%=link_to evnet.title, "/events/#{event.id}" %></td>
+        <td><%=link_to event.title, "/events/#{event.id}" %></td>
         <td><%= event.body %></td>
+        <td><%= event.area %></td>
+        <td><%= event.tag %></td>
+        <td><%= event.day %></td>
+        <td><%= event.capacity %></td>
         <% if event.image? %>
             <%=  image_tag event.image.url%>
         <% end %>

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-	# before_action :authenticate_user!
+	before_action :authenticate_user!
 
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -25,6 +25,7 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
+    @event.user_id = current_user.id
     	if @event.save
     		flash[:notice] = "The Event was successfly posted!!"
     		redirect_to events_path

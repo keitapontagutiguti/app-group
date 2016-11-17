@@ -36,7 +36,8 @@
     </p>
   <% end %>
 
-  <p><%= link_to 'Back', events_path, class: "btn btn-link back-btn" %></p>
+  <p><%= link_to "Edit", edit_event_path, class: "btn btn-link back-btn" %><%= link_to 'Back', events_path, class: "btn btn-link back-btn" %>
+  </p>
 
 </div>
 
@@ -76,6 +77,7 @@
       <%= f.submit 'コメントを投稿する', class: "btn btn-default" %>
   <% end %>
 </div>
+
 
 
 </div>

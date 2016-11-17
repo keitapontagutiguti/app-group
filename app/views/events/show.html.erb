@@ -18,7 +18,7 @@
   <% end %>
 
   <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
-
+<%= @event.joins.count %>　人参加中
   <% if @event.joins.count < @capacity %>
     <% if @event.joined_by? current_user %>
       <%= link_to "JOIN解除", event_joins_path(@event), class:"btn btn-info form-control", method: :delete %>

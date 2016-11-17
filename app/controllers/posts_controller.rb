@@ -2,8 +2,9 @@ class PostsController < ApplicationController
 	before_action :set_post,only:[:show,:edit,:update,:destroy]
 	def index
 		@posts = Post.all
-        @posts = Post.page(params[:page]).per(10)
-	end
+    @posts = Post.page(params[:page]).per(10)
+    @user = User.find(current_user)	
+  end
 
 	def new
 		@post=Post.new

@@ -2,19 +2,23 @@
 
 <%= form_for(@event) do |f| %>
 
+
 	<% if @event.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-      <ul>
-      	<% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-     	</ul>
+		<div id="notice" class="well">
+			<div id="error_explanation">
+				<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+	      <ul>
+	      	<% @event.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	        <% end %>
+	     	</ul>
+			</div>
 		</div>
 	<% end %>
 
+
 	<div class="form-group">
-		<%= f.label :title %><br>
+		<%= f.label :title, "title(can't be blank.)" %><br>
 		<%= f.text_field :title, class:'form-control' %>
 	</div>
 
@@ -44,7 +48,7 @@
   </div>
 
 	<div class="form-group">
-		<%= f.label :capacity %><br>
+		<%= f.label :capacity, "capacity(can't be blank.)" %><br>
 		<%= f.number_field :capacity, class:'form-control' %>
 		<span id="helpBlock" class="help-block">Include yourself. At least <strong>2</strong> people.</span>
 	</div>

@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-
+  default_scope -> { order(created_at: :desc) }
 	mount_uploader :image, ImageUploader
 
 	acts_as_taggable
@@ -12,5 +12,4 @@ class Event < ActiveRecord::Base
   end
   	validates :title, presence: true
   	validates :capacity, presence: true
-
 end

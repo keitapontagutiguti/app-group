@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 			flash[:notice] = "No results."
 		end
 		@events = Event.page(params[:page]).per(10)
-	end
+  end
 
 	def show
 		@comment = Comment.new

@@ -28,32 +28,8 @@
   <section class="user-info-head">
     <p><%= link_to 'LOGIN EDIT', edit_user_registration_path %></p>
     <p><%= link_to 'PROFILE EDIT', edit_user_path %></p>
-  </section>
-  <% @event.each do |event| %>
-  <section class="post-panel">
-    <tbody>
-      <tr>
-        <% if event.image? %>
-          <td rowspan="2">
-        　   <%= link_to event_path(event) do %><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %><% end %>
-          </td>
-        <% else %>
-          <td rowspan="2">
-            <%= link_to event_path(event) do %><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %><% end %>
-          </td> 
-        <% end %>
-        <td class=""><%= link_to event.title, event_path(event), class: "index-title label label-info padding-adj" %></td>
-        <td class="padding-adj"><%= event.day %></td>
-        <td class="padding-adj"><%= event.area %></td>
-        <td class="padding-adj"><%= event.capacity %></td>
-        <td class="padding-adj">Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
-      </tr>
-      <tr>
-        <td class="index-detail jumbotron" colspan="3" ><%= event.body %></td>
-      </tr>
-   </section>
-    </div>
-    <% end %>
+
+
 </div>
 
 <div class="col-md-5"></div>

@@ -7,7 +7,11 @@
 /*全体*/
 .event-box{
 	@include BaseWidth;
+	.well{
+	   margin-top:20px;
+	}
 }
+
 
 .index-table{
 	line-height: 100px;

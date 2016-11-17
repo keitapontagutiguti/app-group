@@ -10,8 +10,7 @@
    <h2>
    <span class="head-name">
    	 ALL TOPIC LIST
-   </span>　　　　　　　　　　　　　
-   If you want to create</h2>
+   </span>　　　　　　　　　If you want to create</h2>
    <p class="btn_post"><%=link_to "new",new_post_path,:style=>"text-decortion:none;" %>   	
    </p>
    </div>
@@ -23,7 +22,6 @@
 			<td>
 				<p class="post-index-list">
 				<%=link_to post.title, post_path(post) %>
-				<%=  @user.name  %>
 				<%= %>
 				<%= render 'tag_list', tag_list: post.interest_list %>
 			</p>

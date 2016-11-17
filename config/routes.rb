@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
 
-  get "/posts"=> "posts#index",as:"yasui"
-
-  get"/replies"=>"replies#index",as:"replies"
 
   devise_for :users
 
-
   resources :posts do
-    resource :replies, :only => [:create, :destroy]
+    resources :replies, :only => [:create, :destroy]
   end
 
   resources :users, only: [:edit, :update, :show] do
     get :favorites, on: :member
   end
 
+  get 'events/tag_search'
+
   resources :events do
+    
     resources :comments
     resource :joins, only: [:create, :destroy]
   end 
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
 
   root 'base#top'
 
-
+  
 
 
 

@@ -1,6 +1,37 @@
-<h1>最近のできごと！</h1>
- <h2>投稿一覧</h2>
-<% @posts.each do |post| %>
-  <p>タイトル</p>
-  <span><%=link_to post.title, post_path(post) %></span>
-<% end %>
+<div class="post_top">
+	<h1>comments on board</h1>
+	 <%= image_tag 'posts1.jpg',:class=>"background_post"%>
+	 <%= image_tag 'post2.jpg',:class=>"filter"%>
+</div>
+
+<div class="post-index-box">
+
+ <div class="board_body"><h2><span class="head-name">ALL TOPIC LIST</span>　　　　　　　　　　　　　If you want to create</h2>
+ <p class="btn_post"><%=link_to "new",new_post_path,:style=>"text-decortion:none;" %></p>
+<table class="table table-striped">
+	<tbody>
+	<% @posts.each do |post| %>
+	<tr>
+	<th scope="row""> <%# post.id %></th>
+		<td>
+			<p class="post-index-list">
+				<%=link_to post.title, post_path(post) %>
+				<%= render 'tag_list', tag_list: post.interest_list %>
+			</p>
+		</td>
+	</tr>
+	<% end %>
+	</tbody>
+	
+</table>
+</div>
+<div class="page"><%= paginate @posts %></div>
+</div>
+
+  
+
+
+
+
+ 
+

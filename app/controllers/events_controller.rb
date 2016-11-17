@@ -1,24 +1,29 @@
 class EventsController < ApplicationController
-
-	# before_action :authenticate_user!
-
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 
 	def index
-		@events = Event.all
 		@search = Event.search(params[:q])
 		@events = @search.result(district: true)
-	end
+		if @events.blank? == true
+			flash[:notice] = "No results."
+		end
+		@events = Event.page(params[:page]).per(10)
+  end
 
 	def show
 		@comment = Comment.new
-    @event = Event.find(params[:id])
-    @capacity = @event.capacity
+  	@event = Event.find(params[:id])
+  	@capacity = @event.capacity
 	end
 
 	def new
-		@event = Event.new
+		if user_signed_in?
+			@event = Event.new
+		else 
+			redirect_to new_user_session_path
+		end
 	end
 
 	def edit
@@ -27,35 +32,42 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
-    if @event.save
-    	redirect_to events_path
-    	flash[:notice] = "The Event was successfly posted!!"
-    else
-    	Event.new(event_params)
-    	render 'new'
-    end
-  end
+		@event.user_id = current_user.id
+    	if @event.save
+    		flash[:notice] = "The Event was successfly posted!!"
+    		redirect_to events_path
+    	else
+    		Event.new(event_params)
+    		render 'new'
+    	end
+  	end
 
 	def update
 		if @event.update(event_params)
+			flash[:notice] = "This Event was successfly updated."
 			redirect_to event_path(@event)
-    	flash[:notice] = "This Event was updated."
-    else
-    	redirect_to event_path(@event)
-    	flash[:notice] = "Update was failed."
-    end
+   		else
+   			flash[:notice] = "Update was failed."
+    		redirect_to event_path(@event)
+    	end
 	end
 
 	def destroy
-		@event.destroy
-		redirect_to events_path
+		if @event.destroy
+			flash[:notice] = "The Event '#{@event.title}' was successfly eliminated."
+			redirect_to events_path
+   		else
+   			flash[:notice] = "The elimination was failed."
+    		redirect_to event_path(@event)
+    	end
+		
 	end
 
 	def tag_search
-
-		render action: 'index'
-		redirect_to events_path
-	end
+		@tag = params[:id]
+		@tagSearch = Event.search(:tags_name_in => [@tag])
+		@events = @tagSearch.result(district: true)
+	end	
 
 	private
 
@@ -63,7 +75,7 @@ class EventsController < ApplicationController
 			@event = Event.find(params[:id])
 		end
 		def event_params
-			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list)
+			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags, :user_id, :event_id)
 		end
 
 end

@@ -1,65 +1,82 @@
-<div class="center-block base-width">
+<div class="event-box">
 
-
-<p id="notice"><%= notice %></p>
-
-
-<% if @event.image? %>
-  <p><%= image_tag @event.image.url %></p>
-<% else %>
-  <p><%= image_tag 'noimage.gif' %></p>
+<% if flash[:notice].present? %>
+  <p id="notice" class="well">
+    <%= notice %>
+  </p>
 <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+<div class="container show-title">
+    <strong><%= @event.title %></strong>
+</div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @event.body %>
-</p>
-
-<p>
-	<strong>Place:</strong>
-	<%= @event.area %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @event.day %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @event.capacity %>
-</p>
-
-<p>
-  <strong>Tag:</strong>
-  <%= render 'tag_list', tag_list: @event.tag_list %>
-</p>
-
-<% @event.comments.each do |comment| %>
-
-    <pre><%= comment.body %></pre>
-<% end %>
-
-<%= form_for([@event,@event.comments.build]) do |f| %>
-    <p><%= f.label :body %></p><br>
-    <p><%= f.text_area :body, :rows => 5 ,:cols => 90 %></p>
-    <%= f.submit 'コメントを投稿する' %>
-  <% end %>
-<% if @event.joins.count < @capacity %>
-  <% if @event.joined_by? current_user %>
-    <%= link_to "JOIN解除", event_joins_path(@event), class:"btn btn-info", method: :delete %>
+<div class="col-md-4 col-sm-6 show-box">
+  <% if @event.image? %>
+    <p class="image-padding"><%= image_tag @event.image.url %></p>
   <% else %>
-    <%= link_to "JOIN",event_joins_path(@event), class:"btn btn-info", method: :post %>
+    <p class="image-padding"><%= image_tag 'noimage.gif' %></p>
   <% end %>
-<% else %>
-  人数オーバーです。参加できません
-<% end %>
-<p><%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %></p>
-<p><%= link_to 'Back', events_path, class: "btn btn-link" %></p>
 
-<div class="center-block base-width">
+  <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
+
+  <% if @event.joins.count < @capacity %>
+    <% if @event.joined_by? current_user %>
+      <%= link_to "JOIN解除", event_joins_path(@event), class:"btn btn-info form-control", method: :delete %>
+    <% else %>
+      <%= link_to "JOIN",event_joins_path(@event), class:"btn btn-info form-control", method: :post %>
+    <% end %>
+  <% else %>
+    人数オーバーです。参加できません
+  <% end %>
+ 
+  <% if current_user.id == @event.user_id? %>
+    <p>
+      <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
+      <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, 'data-confirm' => 'Are you sure?' %>
+    </p>
+  <% end %>
+
+  <p><%= link_to 'Back', events_path, class: "btn btn-link back-btn" %></p>
+
+</div>
+
+<div class="col-md-4 col-sm-6 show-box show-middle">
+
+  <p>
+    <strong>Place:</strong>
+    <%= @event.area %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= @event.day %>
+  </p>
+
+  <p>
+    <strong>Capacity:</strong>
+    <%= @event.capacity %>
+  </p>
+
+  <p>
+    <strong>Detail:</strong>
+    <p class=""><%= @event.body %></p>
+  </p>
+
+</div>
+
+
+<div class="col-md-4 show-box">  
+  <% @event.comments.each do |comment| %>
+
+      <pre><%= comment.body %></pre>
+  <% end %>
+
+  <%= form_for([@event,@event.comments.build]) do |f| %>
+      <p><%= f.text_area :body, :rows => 5, :cols => 30 %></p>
+      <%= f.submit 'コメントを投稿する', class: "btn btn-default" %>
+  <% end %>
+</div>
+
+
+</div>
+

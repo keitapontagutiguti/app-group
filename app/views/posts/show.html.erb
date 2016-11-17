@@ -1,23 +1,29 @@
-<h2>ユーザーID</h2>
-<p><%= @post.user_id %></p>
-<h2>タイトル</h2>
-<p><%= @post.title %></p>
-<h2>本文</h2>
-<p><%= @post.body %></p>
-<%= link_to "編集", edit_post_path(@post.id), class: "btn edit-btn" %>
-<%= link_to "削除", post_path(@post.id), method: :delete, class: "btn destroy-btn", "data-confirm" => "その決断、人生を左右しませんか？" %>
+<div class="post-show-box">
+	<div class="col-md-1"></div>
+	<div class="col-md-5 post-show-left">
+		<h2>TITLE</h2>
+		<p><%= @post.title %></p>
+		<h2>DETAILS</h2>
+		<p><%= @post.body %></p>
+		<%= link_to "edit", edit_post_path(@post.id), class: "btn edit-btn" %>
+		<%= link_to "delete", post_path(@post.id), method: :delete, class: "btn destroy-btn", "data-confirm" => "Are you sure？" %>
+		<%= link_to "back", posts_path, class: "btn" %>
+	</div>
+	<div class="col-md-5 post-show-right">
+	  <h3>COMMENT</h3>
+		<% @replies.each do |reply| %>
+		<pre><%= reply.body %></pre>
+		<p><%= link_to 'delete', [@post,reply],method: :delete,"data-confirm"=>"Are you sure?"%></p>
+		<% end %>
+		 
+		<h3>ADD COMMENT</h3>
+		<%= form_for [@post, @reply] do |f| %>
+		<p><%= f.text_area :body, :rows => 5, :cols => 70 %></p>
+		<p><%= f.submit 'submit' %></p>
+		<% end %>
 
- <h3>コメント：</h3>
-   <% @replies.each do |reply| %>
-     <pre><%= reply.body %></pre>
-    <p>[<%= link_to 'コメントを削除する',method: :delete,"data-confirm"=>"Are you sure?"%>]</p>
-   <% end %>
- 
- <h3>コメント追加：</h3>
-  <%= form_for [@post, @reply] do |f| %>
-    <p>comment:</p><p><%= f.text_area :body, :rows => 5 %></p>
-    <%= f.submit 'コメントを投稿する' %>
+		
 
-  <% end %>
-
-  <%= link_to "TOPへ", posts_path, class: "btn" %>
+	 </div>
+	 <div class="col-md-1"></div>
+ </div>

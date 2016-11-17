@@ -2,39 +2,43 @@
 
 <%= form_for(@event) do |f| %>
 
+
 	<% if @event.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-      <ul>
-      	<% @event.errors.full_messages.each do |message| %>
-        	<li><%= message %></li>
-      	<% end %>
-     	</ul>
+		<div id="notice" class="well">
+			<div id="error_explanation">
+				<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+	      <ul>
+	      	<% @event.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	        <% end %>
+	     	</ul>
+			</div>
 		</div>
 	<% end %>
 
+
 	<div class="form-group">
-		<%= f.label :title %><br>
+		<%= f.label :title, "title(can't be blank.)" %><br>
 		<%= f.text_field :title, class:'form-control' %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :body %><br>
+		<%= f.label :body, "details" %><br>
 		<%= f.text_area :body, class:'form-control' %>
 	</div>
 
 	<div class="form-group">
 		<%= f.label :image %><br>
-		<%= f.file_field :image, class:'content' %>
+		<%= f.file_field :image, class:'file', "data-show-upload" => false  %>
 	</div>
 
 	<div class="form-group">
 		<%= f.label :area %><br>
-		<%= f.text_field :area, class:'form-control' %>
+		<%= f.text_field :area, class: 'form-control' %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :day %><br>
+		<%= f.label :day, "date" %><br>
 		<div class='input-group date datetimepicker'>
 			<span class="input-group-addon">
   			<span class="fa fa-calendar"></span>
@@ -43,9 +47,8 @@
   	</div>
   </div>
 
-
 	<div class="form-group">
-		<%= f.label :capacity %><br>
+		<%= f.label :capacity, "capacity(can't be blank.)" %><br>
 		<%= f.number_field :capacity, class:'form-control' %>
 		<span id="helpBlock" class="help-block">Include yourself. At least <strong>2</strong> people.</span>
 	</div>
@@ -55,12 +58,7 @@
 		<%= f.text_field_tag "event[tag_list]", @event.tag_list.join(','), class:'form-control' %>
 	</div>
 
-	<div class="form-group">
-	  ユーザーID
-	  ここに"current_user.id"が入ります。
-	</div>
-
-	<div class="actions">
-		<%= f.submit class: "btn btn-primary" %>
+	<div class="action">
+		<%= f.submit class: "btn btn-primary form-control" %>
 	</div>
 <% end %>

@@ -1,21 +1,36 @@
 class PostsController < ApplicationController
 	before_action :set_post,only:[:show,:edit,:update,:destroy]
 	def index
-			@posts = Post.all
+		@posts = Post.all
+        @posts = Post.page(params[:page]).per(10)
 	end
 
 	def new
-		
+		@post=Post.new
 	end
 
 	def create
+<<<<<<< HEAD
 		@post = Post.new(params.require(:post).permit(:title,:body))
   	@post.save
   	redirect_to post_path(@post.id)
+=======
+	  @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+>>>>>>> 7d79295f92e03f882b0bcb27d7adec0af8b56db1
 	end
 
 	def show
-		@replies = Reply.all
+		@replies = Reply.where(post_id:@post.id)
 		@reply = Reply.new
 	end
 
@@ -39,6 +54,6 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 	def post_params
-		params.require(:post).permit(:title,:body)
+		params.require(:post).permit(:title,:body,:interest_list)
 	end
 end

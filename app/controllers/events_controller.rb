@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 		if @events.blank? == true
 			flash[:notice] = "No results."
 		end
+		@events = Event.page(params[:page]).per(10)
 	end
 
 	def show

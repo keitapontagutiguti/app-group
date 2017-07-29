@@ -26,37 +26,55 @@
 
 
 
-<table class="table">
-<tbody>
+<table class="event-list">
 <% @events.each do |event| %>
 
-<%= link_to event_path(event) do %>
-  
-      <tr>
-        <% if event.image? %>
-          <td rowspan="2">
-        　   <%= link_to event_path(event) do %><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %><% end %>
-          </td>
-        <% else %>
-          <td rowspan="2">
-            <%= link_to event_path(event) do %><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %><% end %>
-          </td> 
-        <% end %>
-        <td class=""><%= link_to event.title, event_path(event), class: "index-title label label-info padding-adj" %></td>
-        <td class="padding-adj"><%= event.day %></td>
-        <td class="padding-adj"><%= event.area %></td>
-        <td class="padding-adj"><%= event.capacity %></td>
-        <td class="padding-adj"><%= render 'tag_list', tag_list: event.tag_list %></td>
-        <td class="padding-adj">Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
+
+<tbody>
+      <tr class="index-table">
+        <td rowspan="3" class="samnail-cell">
+          <% if event.image? %>
+            <%= link_to event_path(event) do %>
+              <%= image_tag event.image.url, class: "event-samnail" %>
+            <% end %>
+          <% else %>
+            <%= link_to event_path(event) do %>
+              <%= image_tag 'noimage.gif', class: "event-samnail" %>
+            <% end %>  
+          <% end %>
+
+          <% if event.comments.count > 0 %>
+            <strong class="label label-info comments-count"><%= event.comments.count %></strong>
+          <% end %>
+        </td>
+        <td colspan="4">
+          <% if event.tags.exists? == true %>
+            <object><%= render 'tag_list', tag_list: event.tag_list %></object>
+          <% else %>
+            <object>&nbsp;</object>
+          <% end %>
+        </td>
       </tr>
       <tr>
-        <td class="index-detail jumbotron" colspan="6" ><%= event.body %></td>
+        <td rowspan="1"><%= link_to event.title, event_path(event), class: "index-title label label-info" %> </td>
+        <td><p><%= event.day %></p></td>
+        <td><p><%= event.area %></p></td>
+        <td><p><%= event.capacity %></p></td>
       </tr>
-           
+      <tr>
+        <td colspan="4">
+          <% if event.body? %> 
+            <span class="index-detail"><%= event.body %></span>
+          <% else %>
+            <span class="index-detail" style="background-color: transparent;"></span> 
+          <% end %>
+          
+        </td> 
+      </tr>
+</tbody>
+
+
 <% end %>
-       
-<% end %>
-</tbody> 
 </table> 
 
 

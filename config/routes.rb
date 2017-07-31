@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get :favorites, on: :member
   end
 
-  get 'events/tag_search'
+  get 'events/tag_search' => "events#tag_search"
 
   resources :events do
     

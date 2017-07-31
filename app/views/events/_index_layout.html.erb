@@ -49,7 +49,7 @@
         </td>
         <td colspan="4">
           <% if event.tags.exists? == true %>
-            <object><%= render 'tag_list', tag_list: event.tag_list %></object>
+            <object><%= render 'tags', tags: event.tags %></object>
           <% else %>
             <object>&nbsp;</object>
           <% end %>

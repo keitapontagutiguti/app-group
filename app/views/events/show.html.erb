@@ -17,7 +17,11 @@
     <p class="image-padding"><%= image_tag 'noimage.gif' %></p>
   <% end %>
 
-  <p><%= render 'tag_list', tag_list: @event.tag_list %></p>
+  <% if @event.tags.exists? == true %>
+    <p><%= render 'tags', tags: @event.tags %></p>
+  <% else %>
+    <object>&nbsp;</object>
+  <% end %>
 
   <% if @event.joins.count < @capacity %>
     <% if @event.joined_by? current_user %>

@@ -15,7 +15,6 @@ class EventsController < ApplicationController
 
 	def show
 		@comment = Comment.new
-    	@event = Event.find(params[:id])
     	@capacity = @event.capacity
 	end
 
@@ -65,8 +64,8 @@ class EventsController < ApplicationController
 	end
 
 	def tag_search
-		@tag = params[:id]
-		@tagSearch = Event.search(:tags_name_in => [@tag])
+		@tag = params[:format]
+		@tagSearch = Event.search(:tags_name_in => @tag)
 		@events = @tagSearch.result(district: true)
 	end	
 

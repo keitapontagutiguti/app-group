@@ -1,87 +1,89 @@
 <div class="event-box">
 
-<% if flash[:notice].present? %>
-  <p id="notice" class="well">
-    <%= notice %>
-  </p>
-<% end %>
-
-<div class="container show-title">
-    <strong><%= @event.title %></strong>
-</div>
-
-<div class="col-md-4 col-sm-6 show-box">
-  <% if @event.image? %>
-    <p class="image-padding"><%= image_tag @event.image.url %></p>
-  <% else %>
-    <p class="image-padding"><%= image_tag 'noimage.gif' %></p>
-  <% end %>
-
-  <% if @event.tags.exists? == true %>
-    <p><%= render 'tags', tags: @event.tags %></p>
-  <% else %>
-    <object>&nbsp;</object>
-  <% end %>
-
-  <% if @event.joins.count < @capacity %>
-    <% if @event.joined_by? current_user %>
-      <%= link_to "JOIN解除", event_joins_path(@event), class:"btn btn-info form-control", method: :delete %>
-    <% else %>
-      <%= link_to "JOIN",event_joins_path(@event), class:"btn btn-info form-control", method: :post %>
-    <% end %>
-  <% else %>
-    人数オーバーです。参加できません
-  <% end %>
- 
-  <% if current_user.id == @event.user_id? %>
-    <p>
-      <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success" %>
-      <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, 'data-confirm' => 'Are you sure?' %>
+  <% if flash[:notice].present? %>
+    <p id="notice" class="well">
+      <%= notice %>
     </p>
   <% end %>
 
-  <p><%= link_to 'Back', events_path, class: "btn btn-link back-btn" %></p>
+  <div class="col-md-12 col-sm-12 show-title-box">
+      <span class="show-title label label-info"><%= @event.title %></span>
+  </div>
 
-</div>
+  <div class="col-md-6 col-sm-6 show-box">
+    <table><p class="label capacity-count"><%= @event.joins.count %>/<%= @event.capacity %></p></table>
 
-<div class="col-md-4 col-sm-6 show-box show-middle">
+    <% if @event.image? %>
+      <div class="event-image-box"><%= image_tag @event.image.url %></div>
+    <% else %>
+      <div class="event-image-box"><%= image_tag 'noimage.gif' %></div>
+    <% end %>
 
-  <p>
-    <strong>Place:</strong>
-    <%= @event.area %>
-  </p>
+    <% if @event.tags.exists? == true %>
+      <p><%= render 'tags', tags: @event.tags %></p>
+    <% else %>
+      <object>&nbsp;</object>
+    <% end %>
 
-  <p>
-    <strong>Date:</strong>
-    <%= @event.day %>
-  </p>
+    <div class="show-overview">
+      <p>
+        <span>Place:</span>
+        <% if @event.area.blank? == false %>
+          <span class="label label-default">@<%= @event.area %></span>
+        <% end %>           
+      </p>
 
-  <p>
-    <strong>Capacity:</strong>
-    <%= @event.capacity %>
-  </p>
+      <p>
+        <span>Date:</span>
+        <% if @event.day.blank? == false %>
+          <span class="label label-default"><%= @event.day %></span>
+        <% end %> 
+      </p>
 
-  <p>
-    <strong>Detail:</strong>
-    <p class=""><%= @event.body %></p>
-  </p>
+      <p>
+        <span>Detail:</span>
+        <% if @event.body.blank? == true %>
+          <h4>No details.</h4>
+        <% else %>
+          <h4><%= @event.body %></h4>
+        <% end %>
+      </p>
+    </div>
 
-</div>
+    <% if @event.joins.count < @capacity %>
+      <% if @event.joined_by? current_user %>
+        <%= link_to "CANCEL", event_joins_path(@event), class: "btn btn-warning form-control", method: :delete %>
+      <% else %>
+        <%= link_to "JOIN",event_joins_path(@event), class: "btn btn-info form-control", method: :post %>
+      <% end %>
+    <% else %>
+      <p class="btn btn-default form-control">Sorry,full.</p>
+    <% end %>
+   
+    <% if current_user.id == @event.user_id %>
+      <p>
+        <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success btn-margin" %>
+        <%= link_to 'Delete', event_path(@event), class: "btn btn-danger btn-margin", method: :delete, 'data-confirm' => 'Are you sure?' %>
+      </p>
+    <% end %>
 
+    <p><%= link_to 'Back', events_path, class: "btn btn-link btn-margin" %></p>
 
-<div class="col-md-4 show-box">  
-  <% @event.comments.each do |comment| %>
+  </div>
 
+  <div class="col-md-6 col-sm-6 show-box">
+
+    <% @event.comments.each do |comment| %>
       <pre><%= comment.body %></pre>
-  <% end %>
+    <% end %>
 
-  <%= form_for([@event,@event.comments.build]) do |f| %>
-<!--       <p><%= f.label :body %></p><br> -->
-      <p><%= f.text_area :body, :rows => 5, :cols => 30 %></p>
+    <%= form_for([@event,@event.comments.build]) do |f| %>
+  <!--       <p><%= f.label :body %></p><br> -->
+      <p><%= f.text_area :body, :rows => 5, :cols => 22, style: "width: 100%;"  %></p>
       <%= f.submit 'コメントを投稿する', class: "btn btn-default" %>
-  <% end %>
-</div>
+    <% end %>
 
+  </div>
 
 </div>
 

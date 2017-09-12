@@ -5,96 +5,192 @@
 @import 'application.scss';
 
 /*全体*/
-.event-list tbody{
-	display: block;
-	height: 100%;
-	width: 100%;
-}
-.event-list tr, td{
+table tr, td{
 	margin: 5px;
 }
 .event-box{
-	@include BaseWidth;
+	width: 1000px;
+	margin: 0 auto;
 }
-
+.event-tag{
+	color: white;
+	&:hover {
+    	color: white;
+  	}
+}
+.event-samnail{
+	position: absolute;
+	top: 50%;
+ 	left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
 /*ヘッダー*/
 .header-search-btn{
 	margin: 8px 0;
 }
 
-/*index*/
-.index-table{
-	border: none;
-}
 .create-event-btn{
 	margin: 15px 0;
 }
-.samnail-cell{
+
+/*index*/
+
+/*イベントのテーブルです。*/
+.link-box{
 	position: relative;
-	width: 150px;
-	height: 150px;
-	overflow: hidden;
-	border-radius: 10px;
-}
-.event-samnail{
-	position: absolute;
- 	top: 50%;
- 	left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	max-width: 267px;
-	max-height: 150px;
-}
 
-.comments-count{
-	position: absolute;
-	top: 5px;
-	left: 5px;
+	table{
+		table-layout: fixed;
+		text-align: justify-all;
+		width: 100%;
+		background-color: rgba(180,150,230,0.1);
+		margin-bottom: 2px;
+	}
+	.tag{
+		position: relative;/*z-index用いるため。*/
+		z-index: 2;
+		padding: -1px;
+	}
+	.link{
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		&:hover{
+			background-color: rgba(255,255,255,0.3);
+			transition-duration: 0.2s;
+		}
+	}
+	.samnail-cell{
+		position: relative;
+		width: 150px;
+		height: 150px;
+		overflow: hidden;
+		/*border-radius: 10px;*/
+	}
+	.img-size-adj{
+		max-width: 267px;
+		max-height: 150px;
+	}
+	.comments-count{
+		position: absolute;
+		top: 5px;
+		left: 5px;
+	}
+	.capacity-count{
+		position: absolute;
+		bottom: 5px;
+		right: 5px;	
+		font-size: 18px;
+	}
+	.title-cell{
+		vertical-align: top;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		padding: 20px 5px 10px 5px; 
+	}
+	.index-title{
+		font-size: $fontL;
+	}
+	.detail-cell{
+		z-index: 0;
+		padding: 5px;
+	}
+	.index-detail{
+		display: block;
+		max-height: 135px;
+		padding: 10px 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	  	border-radius: 3px;
+	  	background-color: rgba(200,200,200,0.3);
+	}
+	.overview-cell, .tag-cell{
+		width: 100%;
+		padding-left: 5px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: normal;
+		font-size: 25px;
+		span{
+			display: inline-block;
+		}
+	}
 }
-
-.tag-font-color{
-	color: white;
-	&:hover {
-    color: white;
-  }
-}
-.index-title{
-	font-size: $fontL;
-}
-.index-detail{
-	padding: 10px 10px;
-	margin: 5px 0;
-	overflow: hidden;
-  	text-overflow: ellipsis;
-  	border-radius: 3px;
-  	border: none;
-  	background-color: rgba(200,200,200,0.3);
+#page-top{
+	z-index: 3;
 }
 /*show*/
-.show-title{
-	padding: 15px;
-	font-size: $fontLL;
-	font-family: 'Abril Fatface';
-}
-.show-box{
-	margin: 10px 0;
-	font-size: $fontM;
-}	
-.image-padding{
-	padding: 2px;
-}
-.show-middle{
-	padding: 20px;
-	background-color: rgba(200,200,200,0.3);
-	border-radius: 10px;
-}
-.back-btn{
-	margin-top: 10px;
+.show-title-box{
+	max-width: 100%;
+	padding: 20px 20px;
+	word-break: break-all;
+	.show-title{
+		font-size: $fontLL;
+	}
+	.btn-margin{
+		margin: 10px;
+	}
+
 }
 
-/*tag*/
-.tag{
-	padding: -1px;
-	margin: 1px;
+.show-box{
+	margin-bottom: 10px;
+	font-size: 25px;
+	.tag{
+	margin: 3px;
+	}
+	.event-image-box{
+		padding: 5px;
+		img{
+			width: 100%;
+		}
+	}
+}
+
+.show-overview{
+	padding: 20px;
+	margin: 5px 0;
+	background-color: rgba(200,200,200,0.3);
+	border-radius: 10px;
+	word-break: break-all;
+}
+
+@media all and (max-width: 999px){
+	.event-box{
+		width: 100%;
+	}
+}
+@media all and (max-width: 768px){
+	.link-box{
+		.detail-cell{
+			display: none;
+		}
+		.overview-cell, .tag-cell{
+			font-size: 20px;
+		}
+	}
+}
+@media all and (max-width: 480px){
+	.link-box{
+		.index-title{
+			font-size: 25px;
+		}
+	}
+	.show-title-box{
+		.show-title{
+			font-size: $fontL;	
+		}
+	}
+	.show-overview{
+		border-radius: 0;
+	}
 }

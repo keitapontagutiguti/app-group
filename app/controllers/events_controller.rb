@@ -4,6 +4,13 @@ class EventsController < ApplicationController
 
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+	def new
+		if user_signed_in?
+			@event = Event.new
+		else 
+			redirect_to new_user_session_path
+		end
+	end
 
 	def index
 		@search = Event.search(params[:q])
@@ -16,14 +23,6 @@ class EventsController < ApplicationController
 	def show
 		@comment = Comment.new
     	@capacity = @event.capacity
-	end
-
-	def new
-		if user_signed_in?
-			@event = Event.new
-		else 
-			redirect_to new_user_session_path
-		end
 	end
 
 	def edit
@@ -48,7 +47,7 @@ class EventsController < ApplicationController
 			redirect_to event_path(@event)
    		else
    			flash[:notice] = "Update was failed."
-    		redirect_to event_path(@event)
+    		redirect_to edit_event_path(@event)
     	end
 	end
 
@@ -75,7 +74,7 @@ class EventsController < ApplicationController
 			@event = Event.find(params[:id])
 		end
 		def event_params
-			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags)
+			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags, :user_id)
 		end
 
 end

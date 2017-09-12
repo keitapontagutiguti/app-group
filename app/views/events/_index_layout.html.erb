@@ -1,4 +1,6 @@
 <div class="event-box">
+
+
   
   <% if flash[:notice] == "No results." %>
     <div id="notice" class="well">
@@ -25,64 +27,69 @@
 <% if @events.present? %>
 
 
-
-<table class="event-list">
 <% @events.each do |event| %>
+  <div class="link-box">
+    <table>
+      <%= link_to event_path(event),class: "link" do %>
+        <tbody>
+          <tr>
+            <td rowspan="3" class="samnail-cell">
+              <% if event.image? %>
+                  <%= image_tag event.image.url, class: "img-size-adj event-samnail" %>
+              <% else %>
+                  <%= image_tag 'noimage.gif', class: "img-size-adj event-samnail" %> 
+              <% end %>
+              <% if event.comments.count > 0 %>
+                <strong class="label label-info comments-count"><%= event.comments.count %></strong>
+              <% end %>
+              <strong class="label capacity-count"><%= event.joins.count %>/<%= event.capacity %></strong>
+            </td>
 
+            <td colspan="5" rowspan="1" class="title-cell">
+              <span class="index-title label label-info"><%= event.title %></span>
+            </td>
 
-<tbody>
-      <tr class="index-table">
-        <td rowspan="3" class="samnail-cell">
-          <% if event.image? %>
-            <%= link_to event_path(event) do %>
-              <%= image_tag event.image.url, class: "event-samnail" %>
-            <% end %>
-          <% else %>
-            <%= link_to event_path(event) do %>
-              <%= image_tag 'noimage.gif', class: "event-samnail" %>
-            <% end %>  
-          <% end %>
+            <td colspan="3" rowspan="3" class="detail-cell">
+              <% if event.body? %> 
+                <span class="index-detail"><%= event.body %></span>
+              <% else %>
+                <span class="index-detail" style="background-color: transparent;"></span> 
+              <% end %>
+            </td> 
+          </tr>
 
-          <% if event.comments.count > 0 %>
-            <strong class="label label-info comments-count"><%= event.comments.count %></strong>
-          <% end %>
-        </td>
-        <td colspan="4">
-          <% if event.tags.exists? == true %>
-            <object><%= render 'tags', tags: event.tags %></object>
-          <% else %>
-            <object>&nbsp;</object>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="1"><%= link_to event.title, event_path(event), class: "index-title label label-info" %> </td>
-        <td><p><%= event.day %></p></td>
-        <td><p><%= event.area %></p></td>
-        <td><p><%= event.capacity %></p></td>
-      </tr>
-      <tr>
-        <td colspan="4">
-          <% if event.body? %> 
-            <span class="index-detail"><%= event.body %></span>
-          <% else %>
-            <span class="index-detail" style="background-color: transparent;"></span> 
-          <% end %>
-          
-        </td> 
-      </tr>
-</tbody>
+          <tr>            
+            <td colspan="5" class="overview-cell">
+                <% if event.area.blank? == false %>
+                  <span class="label label-default">@<%= event.area %></span>
+                <% end %>
+                <% if event.day.blank? == false %>
+                  <span class="label label-default"><%= event.day %></span>
+                <% end %>      
+            </td>
+          </tr>
 
+          <tr>
+            <td colspan="5" class="tag-cell">
+              <% if event.tags.exists? == true %>
+                  <%= render 'tags', tags: event.tags %>
+                <% else %>
+                  <span>&nbsp;</span>
+                <% end %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    
+      <input type="hidden" name="eventCapacity" class="eventCapacity" value=<%= event.capacity %> >
+      <input type="hidden" name="eventJoins" class="eventJoins" value=<%= event.joins.count %> >
 
+    </table>
+  </div>
 <% end %>
-</table> 
-
-
-
 
 <%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
 
 <% end %>
-
 
 </div>

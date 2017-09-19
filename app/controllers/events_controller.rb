@@ -15,6 +15,8 @@ class EventsController < ApplicationController
 	def index
 		@search = Event.search(params[:q])
 		@events = @search.result(district: true)
+		# @events_updates = @events.select(:updated_at)
+		@sort = @events.order("updated_at DESC")
 		if @events.blank? == true
 			flash[:notice] = "No results."
 		end

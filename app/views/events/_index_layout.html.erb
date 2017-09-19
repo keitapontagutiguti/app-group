@@ -24,10 +24,10 @@
 
 <%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
 
-<% if @events.present? %>
+<% if @sort.present? %>
 
 
-<% @events.each do |event| %>
+<% @sort.each do |event| %>
   <div class="link-box">
     <table>
       <%= link_to event_path(event),class: "link" do %>

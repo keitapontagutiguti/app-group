@@ -7,7 +7,6 @@ $(function(){
 
 	var table = $("table");
 
-
 	for (var i = table.length - 1; i >= 0; i--) {
 
 	var eventCapacity = parseInt( $(".eventCapacity").eq(i).val() ),
@@ -25,6 +24,7 @@ $(function(){
 	  }
 
 	}
+
 
 
 

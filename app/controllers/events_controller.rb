@@ -2,10 +2,19 @@ class EventsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+	def new
+		if user_signed_in?
+			@event = Event.new
+		else 
+			redirect_to new_user_session_path
+		end
+	end
 
 	def index
 		@search = Event.search(params[:q])
 		@events = @search.result(district: true)
+		# @events_updates = @events.select(:updated_at)
+		@sort = @events.order("updated_at DESC")
 		if @events.blank? == true
 			flash[:notice] = "No results."
 		end
@@ -13,17 +22,8 @@ class EventsController < ApplicationController
   end
 
 	def show
-		@comment = Comment.new
-  	@event = Event.find(params[:id])
-  	@capacity = @event.capacity
-	end
-
-	def new
-		if user_signed_in?
-			@event = Event.new
-		else 
-			redirect_to new_user_session_path
-		end
+    @comment = Comment.new
+    @capacity = @event.capacity
 	end
 
 	def edit
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 			redirect_to event_path(@event)
    		else
    			flash[:notice] = "Update was failed."
-    		redirect_to event_path(@event)
+    		redirect_to edit_event_path(@event)
     	end
 	end
 
@@ -64,8 +64,8 @@ class EventsController < ApplicationController
 	end
 
 	def tag_search
-		@tag = params[:id]
-		@tagSearch = Event.search(:tags_name_in => [@tag])
+		@tag = params[:format]
+		@tagSearch = Event.search(:tags_name_in => @tag)
 		@events = @tagSearch.result(district: true)
 	end	
 
@@ -75,7 +75,7 @@ class EventsController < ApplicationController
 			@event = Event.find(params[:id])
 		end
 		def event_params
-			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags, :user_id, :event_id)
+			params.require(:event).permit(:title, :body, :image, :area, :day, :capacity, :tag_list, :tags, :user_id)
 		end
 
 end

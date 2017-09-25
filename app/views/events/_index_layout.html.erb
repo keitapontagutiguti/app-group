@@ -1,4 +1,6 @@
 <div class="event-box">
+
+
   
   <% if flash[:notice] == "No results." %>
     <div id="notice" class="well">
@@ -22,49 +24,72 @@
 
 <%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
 
-<% if @events.present? %>
+<% if @sort.present? %>
 
 
+<% @sort.each do |event| %>
+  <div class="link-box">
+    <table>
+      <%= link_to event_path(event),class: "link" do %>
+        <tbody>
+          <tr>
+            <td rowspan="3" class="samnail-cell">
+              <% if event.image? %>
+                  <%= image_tag event.image.url, class: "img-size-adj event-samnail" %>
+              <% else %>
+                  <%= image_tag 'noimage.gif', class: "img-size-adj event-samnail" %> 
+              <% end %>
+              <% if event.comments.count > 0 %>
+                <strong class="label label-info comments-count"><%= event.comments.count %></strong>
+              <% end %>
+              <strong class="label capacity-count"><%= event.joins.count %>/<%= event.capacity %></strong>
+            </td>
 
-<table class="table">
-<tbody>
-<% @events.each do |event| %>
+            <td colspan="5" rowspan="1" class="title-cell">
+              <span class="index-title label label-info"><%= event.title %></span>
+            </td>
 
-<%= link_to event_path(event) do %>
-  
-      <tr>
-        <% if event.image? %>
-          <td rowspan="2">
-        　   <%= link_to event_path(event) do %><%= image_tag event.image.url, class: "img-responsive img-rounded event-samnail" %><% end %>
-          </td>
-        <% else %>
-          <td rowspan="2">
-            <%= link_to event_path(event) do %><%= image_tag 'noimage.gif', class: "img-responsive img-rounded event-samnail" %><% end %>
-          </td> 
-        <% end %>
-        <td class=""><%= link_to event.title, event_path(event), class: "index-title label label-info padding-adj" %></td>
-        <td class="padding-adj"><%= event.day %></td>
-        <td class="padding-adj"><%= event.area %></td>
-        <td class="padding-adj"><%= event.capacity %></td>
-        <td class="padding-adj"><%= render 'tag_list', tag_list: event.tag_list %></td>
-        <td class="padding-adj">Comment<strong class="label label-info"><%= event.comments.count %></strong></td>
-      </tr>
-      <tr>
-        <td class="index-detail jumbotron" colspan="6" ><%= event.body %></td>
-      </tr>
-           
+            <td colspan="3" rowspan="3" class="detail-cell">
+              <% if event.body? %> 
+                <span class="index-detail"><%= event.body %></span>
+              <% else %>
+                <span class="index-detail" style="background-color: transparent;"></span> 
+              <% end %>
+            </td> 
+          </tr>
+
+          <tr>            
+            <td colspan="5" class="overview-cell">
+                <% if event.area.blank? == false %>
+                  <span class="label label-default">@<%= event.area %></span>
+                <% end %>
+                <% if event.day.blank? == false %>
+                  <span class="label label-default"><%= event.day %></span>
+                <% end %>      
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="5" class="tag-cell">
+              <% if event.tags.exists? == true %>
+                  <%= render 'tags', tags: event.tags %>
+                <% else %>
+                  <span>&nbsp;</span>
+                <% end %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    
+      <input type="hidden" name="eventCapacity" class="eventCapacity" value=<%= event.capacity %> >
+      <input type="hidden" name="eventJoins" class="eventJoins" value=<%= event.joins.count %> >
+
+    </table>
+  </div>
 <% end %>
-       
-<% end %>
-</tbody> 
-</table> 
-
-
-
 
 <%= link_to "Create Event!", new_event_path, class: "btn btn-success form-control create-event-btn" %>
 
 <% end %>
-
 
 </div>

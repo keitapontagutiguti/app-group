@@ -7,24 +7,26 @@
 		<div id="notice" class="well">
 			<div id="error_explanation">
 				<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-	      <ul>
-	      	<% @event.errors.full_messages.each do |message| %>
-	        <li><%= message %></li>
-	        <% end %>
-	     	</ul>
+	    		<ul>
+	      			<% @event.errors.full_messages.each do |message| %>
+	        			<li><%= message %></li>
+	        		<% end %>
+	    		</ul>
 			</div>
 		</div>
 	<% end %>
 
 
 	<div class="form-group">
-		<%= f.label :title, "title(can't be blank.)" %><br>
+		<%= f.label :title, "title" %><br>
 		<%= f.text_field :title, class:'form-control' %>
+		<h6>Can't be blank. Maximum <strong>100</strong> characters.</h6>
 	</div>
 
 	<div class="form-group">
 		<%= f.label :body, "details" %><br>
 		<%= f.text_area :body, class:'form-control' %>
+		<h6>Maximum <strong>500</strong> characters.</h6>
 	</div>
 
 	<div class="form-group">
@@ -48,17 +50,17 @@
   </div>
 
 	<div class="form-group">
-		<%= f.label :capacity, "capacity(can't be blank.)" %><br>
+		<%= f.label :capacity, "capacity" %><br>
 		<%= f.number_field :capacity, class:'form-control' %>
-		<span id="helpBlock" class="help-block">Include yourself. At least <strong>2</strong> people.</span>
+		<h6>Can't be blank. Please set up the capacity greater than <strong>1</strong>.</h6>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :tag_list, "tag(separated by commas)" %><br>
+		<%= f.label :tag_list, "tag (separated by commas.)" %><br>
 		<%= f.text_field_tag "event[tag_list]", @event.tag_list.join(','), class:'form-control' %>
 	</div>
 
-	<div class="action">
+	<div class="action ">
 		<%= f.submit class: "btn btn-primary form-control" %>
 	</div>
 <% end %>

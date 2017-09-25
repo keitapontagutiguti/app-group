@@ -1,0 +1,6 @@
+
+<% tags.each do |tag| %>
+  <span class="label label-primary tag">
+  	<object>#</object><%= link_to tag, events_tag_search_path(tag.name), class:"event-tag" %>
+  </span>
+<% end %>

@@ -18,6 +18,7 @@
 @import 'bootstrap-datetimepicker';
 @import url(http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps);
 @import url(https://fonts.googleapis.com/css?family=Abril+Fatface|Ravi+Prakash);
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 @import 'bootstrap-fileinput';
 
 $fontS:15px;
@@ -38,7 +39,7 @@ $fontLL:40px;
 	text-align: center;
 }
 @mixin FontType{
-	font-family: 'Bree Serif', serif;
+	font-family: 'New Gulim', 'arial', sans-serif;
 }
 
 *{
@@ -50,6 +51,7 @@ $fontLL:40px;
 
 /*header*/
 .navbar-inverse{
+	font-family: 'Bree Serif', serif;
 	background-color: #bbbcff;
 	border-color: #bbbcff;
 }
@@ -83,7 +85,7 @@ $fontLL:40px;
 	border-radius: 0;
 }
 .h-title{
-	font-size: 30px;
+	font-size: $fontL;
 }
 .nav{
 	a{
@@ -140,9 +142,9 @@ $fontLL:40px;
     font-size: 77%;
 }
 #page-top a {
-    background: #666;
+    background-color: rgba(10,10,10,0.5);
     text-decoration: none;
-    color: #fff;
+    color: rgba(255,255,255,0.7);
     width: 100px;
     padding: 30px 0;
     text-align: center;
@@ -264,5 +266,11 @@ footer{
 		text-align: center;
 		color: white;
 		margin-bottom: 0;
+	}
+}
+
+@media all and (max-width: 480px){
+	.h-title{
+		font-size: $fontM;
 	}
 }

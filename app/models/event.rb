@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
-
+  default_scope -> { order(created_at: :desc) }
 	mount_uploader :image, ImageUploader
 
 	acts_as_taggable
-
+  belongs_to :event
 	has_many :joins, dependent: :destroy
 	has_many :comments, dependent: :destroy
 

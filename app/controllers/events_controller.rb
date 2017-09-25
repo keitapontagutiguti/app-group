@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
-
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def new
@@ -20,11 +18,12 @@ class EventsController < ApplicationController
 		if @events.blank? == true
 			flash[:notice] = "No results."
 		end
-	end
+		@events = Event.page(params[:page]).per(10)
+  end
 
 	def show
-		@comment = Comment.new
-    	@capacity = @event.capacity
+    @comment = Comment.new
+    @capacity = @event.capacity
 	end
 
 	def edit
